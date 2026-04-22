@@ -1,158 +1,178 @@
-/* ===== FOOTER ===== */
+/* Footer */
 .footer {
-    background: linear-gradient(180deg, var(--neon-blue-deep) 0%, #1488CC 100%);
-    padding: 3rem 0 1rem;
-    border-top: 4px solid var(--neon-blue-cyan);
+  background: transparent;
+  color: var(--luxury-body-muted);
+  padding: var(--spacing-xl) 0 var(--spacing-md);
+  position: relative;
+  z-index: 10;
 }
 
 .footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 3rem;
-    margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
 }
 
-.footer-section h3,
+.footer-section-brand {
+  align-self: start;
+}
+
+.footer-brand-hit {
+  display: inline-block;
+  margin: 0 0 var(--spacing-sm);
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  line-height: 0;
+  border-radius: 10px;
+}
+
+.footer-brand-hit:focus-visible {
+  outline: 2px solid rgba(201, 164, 77, 0.75);
+  outline-offset: 4px;
+}
+
+.footer-brand-logo {
+  display: block;
+  height: auto;
+  width: auto;
+  /* 500% larger than prior caps → 6× (320×6, 88×6) */
+  max-width: min(1920px, 100%);
+  max-height: 528px;
+  object-fit: contain;
+  object-position: left center;
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.35));
+}
+
 .footer-section h4 {
-    margin-bottom: 1.5rem;
-    color: var(--white);
-    font-weight: 600;
-    font-family: var(--heading-font);
+  color: var(--luxury-gold-bright) !important;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
 }
 
-.footer-section p,
-.footer-section ul li {
-    color: var(--white);
-    opacity: 0.9;
-    margin-bottom: 0.5rem;
-    font-weight: 400;
-    font-family: var(--body-font);
+.footer-section p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--luxury-body-muted) !important;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.9;
 }
 
 .footer-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: var(--spacing-xs);
+  font-size: 1rem;
+  color: var(--luxury-body-muted) !important;
+  opacity: 0.9;
 }
 
 .footer-section ul li a {
-    color: var(--white);
-    opacity: 0.8;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    font-weight: 400;
-    font-family: var(--body-font);
+  color: var(--luxury-gold-bright) !important;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  opacity: 0.85;
 }
 
 .footer-section ul li a:hover {
-    color: var(--neon-blue-cyan);
-    opacity: 1;
+  color: var(--luxury-ivory) !important;
+  opacity: 1;
 }
 
 .footer-section ul li i {
-    margin-right: 0.5rem;
-    color: var(--neon-blue-cyan);
+  margin-right: 10px;
+  color: var(--luxury-gold);
+  width: 16px;
 }
 
+/* Social Links */
 .social-links {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
 }
 
 .social-link {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    border: 2px solid;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  /* --bg-white is #000 in this theme; icons need real light text on brand buttons */
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Facebook - Official Facebook Medium Blue */
+.social-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+}
+
 .social-facebook {
-    background: rgba(66, 103, 178, 0.2);
-    color: #4267B2;
-    border-color: #4267B2;
+  background: #1877F2;
 }
 
 .social-facebook:hover {
-    background: #4267B2;
-    color: var(--white);
-    transform: translateY(-5px);
-    border-color: #4267B2;
+  background: #166FE5;
 }
 
-/* X (formerly Twitter) - Official X Black */
 .social-x {
-    background: rgba(255, 255, 255, 0.2);
-    color: #FFFFFF;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-}
-
-.social-x i {
-    font-size: 1.15em;
-    font-weight: 900;
-    color: #FFFFFF !important;
-    display: block;
-    line-height: 1;
+  background: #000000;
 }
 
 .social-x:hover {
-    background: #000000;
-    border-color: #000000;
-    transform: translateY(-5px);
+  background: #1a1a1a;
 }
 
-.social-x:hover i {
-    color: #FFFFFF !important;
-}
-
-/* Instagram - Vibrant Gradient (Purple to Pink, Orange, Yellow) */
 .social-instagram {
-    background: linear-gradient(45deg, rgba(131, 58, 180, 0.3), rgba(225, 48, 108, 0.3), rgba(253, 224, 71, 0.3));
-    color: #833AB4;
-    border: 2px solid #833AB4;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
 }
 
 .social-instagram:hover {
-    background: linear-gradient(45deg, #833AB4, #E1306C, #FDE047, #FCAF45);
-    color: var(--white);
-    transform: translateY(-5px);
-    border-color: #833AB4;
+  opacity: 0.9;
 }
 
-/* LinkedIn - Official LinkedIn Medium Blue */
 .social-linkedin {
-    background: rgba(0, 119, 181, 0.2);
-    color: #0077B5;
-    border-color: #0077B5;
+  background: #0077B5;
 }
 
 .social-linkedin:hover {
-    background: #0077B5;
-    color: var(--white);
-    transform: translateY(-5px);
-    border-color: #0077B5;
+  background: #006097;
 }
 
+/* Footer Bottom */
 .footer-bottom {
-    text-align: center;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--white);
-    opacity: 0.8;
-    font-weight: 400;
-    font-family: var(--body-font);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid rgba(184, 149, 74, 0.22);
+  text-align: center;
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
+.footer-bottom p {
+  font-size: 0.9375rem;
+  color: var(--luxury-mist);
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .footer {
+    padding: var(--spacing-lg) 0 var(--spacing-md);
+  }
 }

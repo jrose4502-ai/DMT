@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Navbar.css";
-import logo from "../assets/images/new transparent logo.png";
+import BellaBot from './BellaBot';
+import BrandLogo from './BrandLogo';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,8 +12,7 @@ const Navbar = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 100);
 
-      // Update active section based on scroll position
-      const sections = ['home', 'about', 'services', 'contact'];
+      const sections = ['home', 'about', 'services', 'pricing', 'contact'];
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -42,67 +42,101 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-      <div className="container">
-        <div className="navbar-logo" onClick={() => scrollToSection('home')}>
-          <img src={logo} alt="AJ Money Makers Logo" className="logo-image" />
-          <span className="logo-tagline">Digital Marketing Agency</span>
+    <>
+      <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${isOpen ? 'navbar-menu-open' : ''}`}>
+        <div className="container navbar-inner">
+          <div
+            className="navbar-logo"
+            onClick={() => scrollToSection('home')}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                scrollToSection("home");
+              }
+            }}
+            aria-label="Digital Marketrix, Home"
+          >
+            <BrandLogo />
+          </div>
+
+          <ul className={`navbar-links ${isOpen ? "navbar-links-open" : ""}`}>
+            <li>
+              <a
+                href="#home"
+                className={activeSection === 'home' ? 'active' : ''}
+                onClick={(e) => { e.preventDefault(); scrollToSection('home'); }}
+              >
+                Home
+              </a>
+            </li>
+            <li>
+              <a
+                href="#services"
+                className={activeSection === 'services' ? 'active' : ''}
+                onClick={(e) => { e.preventDefault(); scrollToSection('services'); }}
+              >
+                Services
+              </a>
+            </li>
+            <li>
+              <a
+                href="#pricing"
+                className={activeSection === 'pricing' ? 'active' : ''}
+                onClick={(e) => { e.preventDefault(); scrollToSection('pricing'); }}
+              >
+                Pricing
+              </a>
+            </li>
+            <li>
+              <a
+                href="#about"
+                className={activeSection === 'about' ? 'active' : ''}
+                onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}
+              >
+                About
+              </a>
+            </li>
+            <li>
+              <a
+                href="#contact"
+                className={activeSection === 'contact' ? 'active' : ''}
+                onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}
+              >
+                Contact
+              </a>
+            </li>
+          </ul>
+
+          <div className="navbar-actions">
+            <a
+              href="#contact"
+              className="navbar-cta"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('contact');
+              }}
+            >
+              Get Started
+            </a>
+            <button
+              type="button"
+              className={`navbar-toggle ${isOpen ? 'active' : ''}`}
+              onClick={handleToggle}
+              aria-label="Toggle menu"
+              aria-expanded={isOpen}
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+          </div>
         </div>
-
-        {/* Hamburger button (mobile only) */}
-        <button 
-          className={`navbar-toggle ${isOpen ? 'active' : ''}`} 
-          onClick={handleToggle} 
-          aria-label="Toggle menu"
-          aria-expanded={isOpen}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        <ul className={`navbar-links ${isOpen ? "navbar-links-open" : ""}`}>
-          <li>
-            <a 
-              href="#home" 
-              className={activeSection === 'home' ? 'active' : ''}
-              onClick={(e) => { e.preventDefault(); scrollToSection('home'); }}
-            >
-              Home
-            </a>
-          </li>
-          <li>
-            <a 
-              href="#about" 
-              className={activeSection === 'about' ? 'active' : ''}
-              onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}
-            >
-              About
-            </a>
-          </li>
-          <li>
-            <a 
-              href="#services" 
-              className={activeSection === 'services' ? 'active' : ''}
-              onClick={(e) => { e.preventDefault(); scrollToSection('services'); }}
-            >
-              Services
-            </a>
-          </li>
-          <li>
-            <a 
-              href="#contact" 
-              className={activeSection === 'contact' ? 'active' : ''}
-              onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}
-            >
-              Contact
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+      </nav>
+      <BellaBot />
+    </>
   );
 };
 
 export default Navbar;
-

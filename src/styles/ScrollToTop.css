@@ -1,31 +1,46 @@
-/* ===== SCROLL TO TOP BUTTON ===== */
-.scroll-top {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: var(--navy);
-    border: none;
-    border-radius: 50%;
-    color: var(--white);
-    font-size: 1.5rem;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 15px rgba(26, 46, 64, 0.3);
-    z-index: 999;
-    font-weight: 600;
+/* Scroll To Top Button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: var(--luxury-cta-bg);
+  color: var(--luxury-cta-text);
+  border: 1px solid rgba(184, 149, 74, 0.5);
+  border-radius: var(--radius-md);
+  font-size: 1.25rem;
+  cursor: pointer;
+  box-shadow:
+    0 4px 18px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 var(--luxury-cta-border);
+  transition: all 0.3s ease;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.scroll-top.visible {
-    opacity: 1;
-    visibility: visible;
+.scroll-to-top:hover {
+  filter: brightness(1.06);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5), 0 0 24px rgba(212, 188, 122, 0.2);
+  color: var(--luxury-ink);
 }
 
-.scroll-top:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(26, 46, 64, 0.4);
-    background: var(--green);
+.scroll-to-top.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .scroll-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    font-size: 1.125rem;
+  }
 }

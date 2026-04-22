@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/Footer.css';
+import footerBrandLogo from '../assets/images/DM logo bottom left rans.png';
 
 const Footer = () => {
   const scrollToSection = (sectionId) => {
@@ -13,11 +14,23 @@ const Footer = () => {
     <footer className="footer">
       <div className="container">
         <div className="footer-content">
-          <div className="footer-section">
-            <h3>AJ Money Makers</h3>
+          <div className="footer-section footer-section-brand">
+            <button
+              type="button"
+              className="footer-brand-hit"
+              onClick={() => scrollToSection('home')}
+              aria-label="Digital Marketrix, Home"
+            >
+              <img
+                src={footerBrandLogo}
+                alt=""
+                className="footer-brand-logo"
+                decoding="async"
+              />
+            </button>
             <p>Your trusted digital marketing partner in Los Angeles.</p>
             <div className="social-links">
-              <a href="https://facebook.com" className="social-link social-facebook" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.facebook.com/profile.php?id=61570744196038" className="social-link social-facebook" target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-facebook-f"></i>
               </a>
               <a href="https://x.com" className="social-link social-x" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)">
@@ -50,6 +63,11 @@ const Footer = () => {
                 </a>
               </li>
               <li>
+                <a href="#pricing" onClick={(e) => { e.preventDefault(); scrollToSection('pricing'); }}>
+                  Pricing
+                </a>
+              </li>
+              <li>
                 <a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>
                   Contact
                 </a>
@@ -63,16 +81,16 @@ const Footer = () => {
                 <i className="fas fa-map-marker-alt"></i> Los Angeles, CA
               </li>
               <li>
-                <i className="fas fa-phone"></i> (559) 874-8874
+                <i className="fas fa-phone"></i> (818) 583-7263
               </li>
               <li>
-                <i className="fas fa-envelope"></i> info@ajmoneymakers.com
+                <i className="fas fa-envelope"></i> info@digitalmarketrix.com
               </li>
             </ul>
           </div>
         </div>
         <div className="footer-bottom">
-          <p>&copy; 2025 AJ Money Makers. All rights reserved. Founded by Julian Rosario and Angie Rosso.</p>
+          <p>&copy; 2026 Digital Marketrix. All rights reserved. Founded by Julian Rosario and Angie Rosso.</p>
         </div>
       </div>
     </footer>

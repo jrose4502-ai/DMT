@@ -1,8 +1,8 @@
-# Git Setup Instructions for AJ Money Makers Website
+# Git Setup Instructions for Digital Marketrix Website
 
 ## 📋 Push to GitHub Repository
 
-Follow these steps to push your website to the GitHub repository: https://github.com/jrose4502-ai/AJM.git
+Follow these steps to push your website to the GitHub repository: https://github.com/jrose4502-ai/digital-marketrix.git
 
 ### Step 1: Open Terminal/Command Prompt
 
@@ -33,13 +33,13 @@ git add .
 ### Step 5: Create Initial Commit
 
 ```bash
-git commit -m "Initial commit: AJ Money Makers website with React components"
+git commit -m "Initial commit: Digital Marketrix website with React components"
 ```
 
 ### Step 6: Add Remote Repository
 
 ```bash
-git remote add origin https://github.com/jrose4502-ai/AJM.git
+git remote add origin https://github.com/jrose4502-ai/digital-marketrix.git
 ```
 
 ### Step 7: Push to GitHub
@@ -60,7 +60,7 @@ If prompted for authentication, you may need to use a Personal Access Token (PAT
 3. Scroll down and click "Developer settings"
 4. Click "Personal access tokens" → "Tokens (classic)"
 5. Click "Generate new token" → "Generate new token (classic)"
-6. Give it a name like "AJM Website"
+6. Give it a name like "Digital Marketrix Website"
 7. Select scopes: Check "repo" (full control of private repositories)
 8. Click "Generate token"
 9. **COPY THE TOKEN** (you won't see it again!)
@@ -134,7 +134,7 @@ git reset --soft HEAD~1
 ### Error: "remote origin already exists"
 ```bash
 git remote remove origin
-git remote add origin https://github.com/jrose4502-ai/AJM.git
+git remote add origin https://github.com/jrose4502-ai/digital-marketrix.git
 ```
 
 ### Error: "failed to push some refs"
@@ -155,5 +155,5 @@ git push origin main
 
 ---
 
-Need help? Contact: info@ajmoneymakers.com
+Need help? Contact: info@digitalmarketrix.com
 

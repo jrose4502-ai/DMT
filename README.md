@@ -1,18 +1,18 @@
-# AJ Money Makers - Digital Marketing Agency Website
+# Digital Marketrix - Digital Marketing Agency Website
 
-![AJ Money Makers Logo](src/assets/images/icon-transparent.png)
+![Digital Marketrix Logo](src/assets/images/icon-transparent.png)
 
-A modern, responsive website for AJ Money Makers, a premier digital marketing agency based in Los Angeles, California.
+A modern, responsive website for Digital Marketrix, a premier digital marketing agency based in Los Angeles, California.
 
 ## 🌟 About
 
-AJ Money Makers is a digital marketing agency founded by Julian Rosario and Angie Rosso, dedicated to helping businesses thrive in the digital landscape through innovative marketing strategies.
+Digital Marketrix is a digital marketing agency founded by Julian Rosario and Angie Rosso, dedicated to helping businesses thrive in the digital landscape through innovative marketing strategies.
 
 ## 📞 Contact Information
 
 - **Location**: Los Angeles, California
 - **Phone**: (559) 874-8874
-- **Email**: info@ajmoneymakers.com
+- **Email**: info@digitalmarketrix.com
 
 ## ✨ Features
 
@@ -42,8 +42,8 @@ AJ Money Makers is a digital marketing agency founded by Julian Rosario and Angi
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/jrose4502-ai/AJM.git
-cd AJM
+git clone https://github.com/jrose4502-ai/digital-marketrix.git
+cd digital-marketrix
 ```
 
 2. Install dependencies:
@@ -127,17 +127,17 @@ website/
 
 ## 📄 License
 
-© 2025 AJ Money Makers. All rights reserved.
+© 2026 Digital Marketrix. All rights reserved.
 
 ## 🤝 Contributing
 
-This is a private company website. For inquiries, please contact us at info@ajmoneymakers.com
+This is a private company website. For inquiries, please contact us at info@digitalmarketrix.com
 
 ## 📧 Support
 
-For support, email info@ajmoneymakers.com or call (559) 874-8874
+For support, email info@digitalmarketrix.com or call (559) 874-8874
 
 ---
 
-Built with ❤️ by AJ Money Makers in Los Angeles, CA
-"# AJM" 
+Built with ❤️ by Digital Marketrix in Los Angeles, CA
+

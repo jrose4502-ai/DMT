@@ -1,9 +1,9 @@
-# AJ Money Makers Website - Setup Instructions
+# Digital Marketrix Website - Setup Instructions
 
 ## 📋 Quick Start
 
 ### 1. Save the Logo
-Save your logo image as `ajmoney-logo.png` in the `website/public/` folder.
+Save your logo image as `digitalmarketrix-logo.png` in the `website/public/` folder.
 - The logo should be a transparent PNG
 - Recommended dimensions: 400x400px or similar square aspect ratio
 - The navbar will automatically resize it
@@ -28,7 +28,7 @@ The website will open at `http://localhost:3000`
 ```
 website/
 ├── public/
-│   ├── ajmoney-logo.png     <- Place your logo here
+│   ├── digitalmarketrix-logo.png     <- Place your logo here
 │   └── index.html
 ├── src/
 │   ├── components/
@@ -67,11 +67,11 @@ website/
 
 ## 📝 Business Information Included
 
-- **Company**: AJ Money Makers
+- **Company**: Digital Marketrix
 - **Location**: Los Angeles, California
 - **Founders**: Julian Rosario & Angie Rosso
 - **Phone**: (559) 874-8874
-- **Email**: info@ajmoneymakers.com
+- **Email**: info@digitalmarketrix.com
 
 ## 🎨 Customization
 
