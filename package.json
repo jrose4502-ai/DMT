@@ -21,12 +21,13 @@
     "start": "react-scripts start",
     "api": "node server.js",
     "dev": "concurrently -n api,web -c green,cyan \"npm run api\" \"npm start\"",
-    "build": "react-scripts build",
+    "build": "cross-env NODE_OPTIONS=--no-deprecation react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
     "express": "^4.21.2"
   },
   "eslintConfig": {
