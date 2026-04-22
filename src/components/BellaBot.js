@@ -1,75 +1,101 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/BellaBot.css';
 
+const INITIAL_MESSAGE = "Hi! I'm Bella, your Digital Marketrix assistant. How can I help you grow your business today?";
+
 const BellaBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { text: "Hi! I'm Bella, your Digital Marketrix assistant. How can I help you grow your business today?", isBot: true }
+    { role: 'assistant', text: INITIAL_MESSAGE }
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const messagesEndRef = useRef(null);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
+  const inputRef = useRef(null);
 
   useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, isTyping]);
 
-  const handleSend = (e) => {
+  useEffect(() => {
+    if (isOpen) {
+      setTimeout(() => inputRef.current?.focus(), 300);
+    }
+  }, [isOpen]);
+
+  const handleSend = async (e) => {
     e.preventDefault();
-    if (!inputValue.trim()) return;
+    const text = inputValue.trim();
+    if (!text || isTyping) return;
 
-    const userMessage = inputValue.trim();
-    setMessages(prev => [...prev, { text: userMessage, isBot: false }]);
     setInputValue('');
+    setHasError(false);
+
+    const userMsg = { role: 'user', text };
+    const updatedMessages = [...messages, userMsg];
+    setMessages(updatedMessages);
     setIsTyping(true);
 
-    // Simulate bot response
-    setTimeout(() => {
-      let botResponse = "";
-      const lowerMsg = userMessage.toLowerCase();
+    // Build the API history: only user/assistant turns (skip the initial greeting
+    // since it was never part of an API call)
+    const apiHistory = updatedMessages
+      .filter((m) => m.role === 'user' || m.role === 'assistant')
+      .map((m) => ({ role: m.role, content: m.text }));
 
-      if (lowerMsg.includes('price') || lowerMsg.includes('cost') || lowerMsg.includes('package')) {
-        botResponse = "We have several packages starting from $499/mo. Our most popular is the Growth Package. Would you like to see the full pricing section?";
-      } else if (lowerMsg.includes('service') || lowerMsg.includes('what do you do')) {
-        botResponse = "We specialize in high-converting websites, SEO, paid ads, and social media management. We're all about making you more money online!";
-      } else if (lowerMsg.includes('contact') || lowerMsg.includes('call') || lowerMsg.includes('email')) {
-        botResponse = "You can reach us at info@digitalmarketrix.com or via the contact form below. Would you like me to scroll you there?";
-      } else if (lowerMsg.includes('julian') || lowerMsg.includes('angie')) {
-        botResponse = "Julian Rosario and Angie Rosso are our founders! They built Digital Marketrix to help businesses like yours thrive.";
-      } else {
-        botResponse = "That's a great question! The best way to get a specific answer for your business is to schedule a quick discovery call. Should I show you how?";
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: apiHistory }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || data.error) {
+        throw new Error(data.error || 'Request failed');
       }
 
-      setMessages(prev => [...prev, { text: botResponse, isBot: true }]);
+      setMessages((prev) => [...prev, { role: 'assistant', text: data.reply }]);
+    } catch (err) {
+      setHasError(true);
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: 'assistant',
+          text: "Sorry, I'm having trouble connecting right now. Please email info@digitalmarketrix.com and we'll get back to you!",
+        },
+      ]);
+    } finally {
       setIsTyping(false);
-    }, 1000);
+    }
   };
 
   return (
     <div className={`bella-bot-container ${isOpen ? 'open' : ''}`}>
-      <button className="bella-bot-toggle" onClick={() => setIsOpen(!isOpen)}>
+      <button
+        className="bella-bot-toggle"
+        onClick={() => setIsOpen(!isOpen)}
+        aria-label={isOpen ? 'Close chat' : 'Open chat with Bella'}
+      >
         {isOpen ? <i className="fas fa-times"></i> : <i className="fas fa-comment-dots"></i>}
         {!isOpen && <span className="notification-dot"></span>}
       </button>
 
-      <div className="bella-bot-window">
+      <div className="bella-bot-window" role="dialog" aria-label="Bella chat assistant">
         <div className="bella-bot-header">
           <div className="bot-info">
             <div className="bot-avatar">B</div>
             <div>
-              <h4>Bella Bot</h4>
-              <p><span className="online-status"></span> Online</p>
+              <h4>Bella</h4>
+              <p><span className="online-status"></span> AI Assistant</p>
             </div>
           </div>
         </div>
 
         <div className="bella-bot-messages">
           {messages.map((msg, index) => (
-            <div key={index} className={`message ${msg.isBot ? 'bot' : 'user'}`}>
+            <div key={index} className={`message ${msg.role === 'assistant' ? 'bot' : 'user'}`}>
               <div className="message-content">{msg.text}</div>
             </div>
           ))}
@@ -85,12 +111,15 @@ const BellaBot = () => {
 
         <form className="bella-bot-input" onSubmit={handleSend}>
           <input
+            ref={inputRef}
             type="text"
-            placeholder="Type a message..."
+            placeholder="Ask me anything…"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
+            disabled={isTyping}
+            aria-label="Chat message"
           />
-          <button type="submit">
+          <button type="submit" disabled={isTyping || !inputValue.trim()} aria-label="Send message">
             <i className="fas fa-paper-plane"></i>
           </button>
         </form>
