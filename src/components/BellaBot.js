@@ -10,7 +10,6 @@ const BellaBot = () => {
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [hasError, setHasError] = useState(false);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -30,8 +29,6 @@ const BellaBot = () => {
     if (!text || isTyping) return;
 
     setInputValue('');
-    setHasError(false);
-
     const userMsg = { role: 'user', text };
     const updatedMessages = [...messages, userMsg];
     setMessages(updatedMessages);
@@ -58,7 +55,6 @@ const BellaBot = () => {
 
       setMessages((prev) => [...prev, { role: 'assistant', text: data.reply }]);
     } catch (err) {
-      setHasError(true);
       setMessages((prev) => [
         ...prev,
         {
