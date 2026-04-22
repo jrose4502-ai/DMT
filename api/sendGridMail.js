@@ -1,3 +1,21 @@
+const path = require("path");
+
+// Load local secrets when API handlers run (does not override vars set by Vercel/hosting).
+try {
+  require("dotenv").config({
+    path: path.join(__dirname, "..", ".env.local"),
+  });
+  require("dotenv").config({
+    path: path.join(__dirname, "..", ".env"),
+  });
+  require("dotenv").config({
+    path: path.join(__dirname, "..", "sendgrid.env"),
+    override: true,
+  });
+} catch (_) {
+  /* dotenv optional in some deploy targets */
+}
+
 const sgMail = require("@sendgrid/mail");
 
 const DEFAULT_TO = "info@digitalmarketrix.com";
@@ -10,15 +28,19 @@ function verifiedFromEmail() {
   ).trim();
 }
 
+function getSendGridApiKey() {
+  return String(process.env.SENDGRID_API_KEY || "").trim();
+}
+
 function isSendGridConfigured() {
-  return Boolean(process.env.SENDGRID_API_KEY && verifiedFromEmail());
+  return Boolean(getSendGridApiKey() && verifiedFromEmail());
 }
 
 /**
  * @param {{ to?: string, replyTo?: string, subject: string, html: string }} opts
  */
 async function sendTransactional(opts) {
-  const apiKey = process.env.SENDGRID_API_KEY;
+  const apiKey = getSendGridApiKey();
   const fromEmail = verifiedFromEmail();
   if (!apiKey || !fromEmail) {
     const err = new Error("SendGrid is not configured");

@@ -9,6 +9,10 @@
 const path = require("path");
 require("dotenv").config({ path: path.join(__dirname, ".env") });
 require("dotenv").config({ path: path.join(__dirname, ".env.local") });
+require("dotenv").config({
+  path: path.join(__dirname, "sendgrid.env"),
+  override: true,
+});
 
 const express = require("express");
 const signupHandler = require("./api/signup");
