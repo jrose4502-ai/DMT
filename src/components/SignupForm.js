@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const apiBase = process.env.REACT_APP_API_URL || "";
+const WEB3FORMS_KEY = "02dc3cef-cc06-4d45-abbb-0b78fc4a6b5e";
 
 export default function SignupForm() {
   const [name, setName] = useState("");
@@ -15,34 +15,35 @@ export default function SignupForm() {
     setStatus("loading");
 
     try {
-      const res = await fetch(`${apiBase}/api/signup`, {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `New signup: ${name.trim()} | digitalmarketrix.com`,
+          from_name: "Digital Marketrix Website",
           name: name.trim(),
           email: email.trim(),
-          company: company.trim() || undefined,
+          company: company.trim() || "Not provided",
+          botcheck: "",
         }),
       });
 
-      const data = await res.json().catch(() => ({}));
+      const data = await res.json();
 
-      if (!res.ok) {
+      if (data.success) {
+        setStatus("success");
+        setFeedback("Thanks! We'll be in touch soon.");
+        setName("");
+        setEmail("");
+        setCompany("");
+      } else {
         setStatus("error");
-        setFeedback(data.error || "Something went wrong. Please try again.");
-        return;
+        setFeedback(data.message || "Something went wrong. Please try again.");
       }
-
-      setStatus("success");
-      setFeedback(data.message || "Thanks for signing up.");
-      setName("");
-      setEmail("");
-      setCompany("");
     } catch {
       setStatus("error");
-      setFeedback(
-        "We could not reach the server. From the website folder run npm run dev (starts API + React), or deploy to Vercel."
-      );
+      setFeedback("Could not send. Please email info@digitalmarketrix.com directly.");
     }
   };
 
@@ -91,6 +92,8 @@ export default function SignupForm() {
             className="signup-input"
           />
         </label>
+        {/* Honeypot spam filter */}
+        <input type="checkbox" name="botcheck" style={{ display: "none" }} />
         <button
           type="submit"
           className="btn btn-primary signup-submit"
