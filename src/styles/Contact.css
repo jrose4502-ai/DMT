@@ -34,9 +34,9 @@
 }
 
 .contact-info-card:hover {
-  box-shadow: 0 0 24px rgba(184, 149, 74, 0.2);
+  box-shadow: 0 0 24px rgba(255, 215, 0, 0.2);
   transform: translateY(-2px);
-  border-color: rgba(212, 188, 122, 0.45);
+  border-color: rgba(255, 215, 0, 0.45);
 }
 
 .contact-info-card h3 {
@@ -70,7 +70,7 @@
   font-size: 0.9375rem;
   background: var(--luxury-cta-bg);
   color: var(--luxury-cta-text) !important;
-  border: 1px solid rgba(184, 149, 74, 0.5);
+  border: 1px solid rgba(255, 215, 0, 0.5);
   text-decoration: none;
   border-radius: var(--radius-md);
   transition: all 0.2s ease;
@@ -81,9 +81,9 @@
 }
 
 .btn-sm:hover {
-  background: linear-gradient(155deg, #f0e2bc 0%, #d4bc7a 45%, #b8954a 100%);
+  background: linear-gradient(155deg, #f0e2bc 0%, #ffe44d 45%, #e6c200 100%);
   transform: translateY(-2px);
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 188, 122, 0.2);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 215, 0, 0.2);
   color: var(--luxury-ink) !important;
 }
 
@@ -136,7 +136,7 @@
   font-size: 1rem;
   padding: 12px 14px;
   border-radius: var(--radius-md);
-  border: 1px solid rgba(184, 149, 74, 0.35);
+  border: 1px solid rgba(255, 215, 0, 0.35);
   background: rgba(0, 0, 0, 0.45);
   color: var(--luxury-ivory);
   outline: none;
@@ -145,7 +145,7 @@
 
 .signup-input:focus {
   border-color: var(--luxury-gold);
-  box-shadow: 0 0 0 1px rgba(184, 149, 74, 0.4);
+  box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.4);
 }
 
 .signup-input:disabled {

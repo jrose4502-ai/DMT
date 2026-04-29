@@ -30,7 +30,7 @@
 }
 
 .footer-brand-hit:focus-visible {
-  outline: 2px solid rgba(201, 164, 77, 0.75);
+  outline: 2px solid rgba(255, 215, 0, 0.75);
   outline-offset: 4px;
 }
 
@@ -154,7 +154,7 @@
 /* Footer Bottom */
 .footer-bottom {
   padding-top: var(--spacing-md);
-  border-top: 1px solid rgba(184, 149, 74, 0.22);
+  border-top: 1px solid rgba(255, 215, 0, 0.22);
   text-align: center;
 }
 

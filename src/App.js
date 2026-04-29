@@ -47,7 +47,7 @@ function ConditionalPlasma() {
 
   return (
     <Plasma
-      color="#c9a44d"
+      color="#ffd700"
       speed={0.55}
       direction="forward"
       scale={1.08}

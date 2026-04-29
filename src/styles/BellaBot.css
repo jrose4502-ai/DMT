@@ -13,11 +13,11 @@
   border-radius: 50%;
   background: var(--luxury-cta-bg);
   color: var(--luxury-cta-text);
-  border: 1px solid rgba(184, 149, 74, 0.55);
+  border: 1px solid rgba(255, 215, 0, 0.55);
   cursor: pointer;
   box-shadow:
     0 4px 20px rgba(0, 0, 0, 0.45),
-    0 0 24px rgba(184, 149, 74, 0.15),
+    0 0 24px rgba(255, 215, 0, 0.15),
     inset 0 1px 0 var(--luxury-cta-border);
   display: flex;
   align-items: center;
@@ -29,7 +29,7 @@
 
 .bella-bot-toggle:hover {
   transform: scale(1.1);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5), 0 0 28px rgba(212, 188, 122, 0.2);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5), 0 0 28px rgba(255, 215, 0, 0.2);
 }
 
 .notification-dot {
@@ -51,7 +51,7 @@
   height: 500px;
   background: rgba(10, 9, 8, 0.98);
   border-radius: 20px;
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(184, 149, 74, 0.15);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 215, 0, 0.15);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -59,7 +59,7 @@
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border: 1px solid rgba(184, 149, 74, 0.28);
+  border: 1px solid rgba(255, 215, 0, 0.28);
 }
 
 .bella-bot-container.open .bella-bot-window {
@@ -72,7 +72,7 @@
   padding: 20px;
   background: rgba(0, 0, 0, 0.88);
   color: var(--luxury-ivory-soft);
-  border-bottom: 1px solid rgba(184, 149, 74, 0.22);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.22);
 }
 
 .bot-info {
@@ -92,7 +92,7 @@
   font-weight: 700;
   font-size: 18px;
   color: var(--luxury-cta-text);
-  border: 1px solid rgba(184, 149, 74, 0.45);
+  border: 1px solid rgba(255, 215, 0, 0.45);
 }
 
 .bot-info h4 {
@@ -138,7 +138,7 @@
   align-self: flex-start;
   background: rgba(22, 20, 18, 0.95);
   color: var(--luxury-ivory-soft);
-  border: 1px solid rgba(184, 149, 74, 0.2);
+  border: 1px solid rgba(255, 215, 0, 0.2);
   border-bottom-left-radius: 2px;
 }
 
@@ -147,7 +147,7 @@
   background: var(--luxury-cta-bg);
   color: var(--luxury-cta-text);
   border-bottom-right-radius: 2px;
-  border: 1px solid rgba(184, 149, 74, 0.45);
+  border: 1px solid rgba(255, 215, 0, 0.45);
 }
 
 .bella-bot-input {
@@ -155,13 +155,13 @@
   background: rgba(0, 0, 0, 0.92);
   display: flex;
   gap: 10px;
-  border-top: 1px solid rgba(184, 149, 74, 0.18);
+  border-top: 1px solid rgba(255, 215, 0, 0.18);
 }
 
 .bella-bot-input input {
   flex: 1;
   background: rgba(18, 16, 14, 0.98);
-  border: 1px solid rgba(184, 149, 74, 0.28);
+  border: 1px solid rgba(255, 215, 0, 0.28);
   padding: 10px 15px;
   border-radius: 25px;
   color: var(--luxury-ivory);
@@ -174,7 +174,7 @@
   border-radius: 50%;
   background: var(--luxury-cta-bg);
   color: var(--luxury-cta-text);
-  border: 1px solid rgba(184, 149, 74, 0.5);
+  border: 1px solid rgba(255, 215, 0, 0.5);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -185,7 +185,7 @@
 .bella-bot-input button:hover {
   filter: brightness(1.05);
   transform: scale(1.05);
-  box-shadow: 0 0 16px rgba(212, 188, 122, 0.25);
+  box-shadow: 0 0 16px rgba(255, 215, 0, 0.25);
 }
 
 /* Typing Animation */

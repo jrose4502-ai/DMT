@@ -28,9 +28,9 @@
   background: rgba(0, 0, 0, 0.94);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.55),
-    0 0 0 1px rgba(184, 149, 74, 0.1),
+    0 0 0 1px rgba(255, 215, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  border-bottom-color: rgba(184, 149, 74, 0.12);
+  border-bottom-color: rgba(255, 215, 0, 0.12);
 }
 
 /* Three-column shell (uses App.css `.container` for width & horizontal padding) */
@@ -51,7 +51,7 @@
 }
 
 .navbar-logo:focus-visible {
-  outline: 2px solid rgba(201, 164, 77, 0.75);
+  outline: 2px solid rgba(255, 215, 0, 0.75);
   outline-offset: 4px;
   border-radius: 8px;
 }
@@ -71,12 +71,12 @@
   max-width: min(220px, 62vw);
   object-fit: contain;
   object-position: left center;
-  filter: drop-shadow(0 2px 10px rgba(201, 164, 77, 0.2));
+  filter: drop-shadow(0 2px 10px rgba(255, 215, 0, 0.2));
   transition: filter 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .brand-logo:hover .brand-logo-img {
-  filter: drop-shadow(0 3px 16px rgba(212, 188, 122, 0.3));
+  filter: drop-shadow(0 3px 16px rgba(255, 215, 0, 0.3));
 }
 
 /* Navigation links — centered row on desktop */
@@ -113,20 +113,20 @@
 
 .navbar-links li a:hover {
   color: var(--luxury-ivory);
-  background: rgba(184, 149, 74, 0.08);
-  box-shadow: 0 0 0 1px rgba(184, 149, 74, 0.18);
+  background: rgba(255, 215, 0, 0.08);
+  box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.18);
 }
 
 .navbar-links li a:focus-visible {
-  outline: 2px solid rgba(201, 164, 77, 0.55);
+  outline: 2px solid rgba(255, 215, 0, 0.55);
   outline-offset: 2px;
 }
 
 .navbar-links li a.active {
   color: var(--luxury-ivory);
   font-weight: 600;
-  background: rgba(184, 149, 74, 0.12);
-  box-shadow: 0 0 0 1px rgba(184, 149, 74, 0.28);
+  background: rgba(255, 215, 0, 0.12);
+  box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.28);
 }
 
 .navbar-links li a.active::after {
@@ -157,7 +157,7 @@
   min-height: 40px;
   border-radius: 999px;
   text-decoration: none;
-  border: 1px solid rgba(184, 149, 74, 0.45);
+  border: 1px solid rgba(255, 215, 0, 0.45);
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
@@ -173,12 +173,12 @@
   transform: translateY(-1px);
   box-shadow:
     0 8px 26px rgba(0, 0, 0, 0.4),
-    0 0 20px rgba(212, 188, 122, 0.18),
+    0 0 20px rgba(255, 215, 0, 0.18),
     inset 0 1px 0 rgba(255, 252, 245, 0.45);
 }
 
 .navbar-cta:focus-visible {
-  outline: 2px solid rgba(212, 188, 122, 0.65);
+  outline: 2px solid rgba(255, 215, 0, 0.65);
   outline-offset: 3px;
 }
 
@@ -197,7 +197,7 @@
   height: 44px;
   padding: 0;
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(184, 149, 74, 0.35);
+  border: 1px solid rgba(255, 215, 0, 0.35);
   border-radius: 12px;
   cursor: pointer;
   transition:
@@ -207,13 +207,13 @@
 }
 
 .navbar-toggle:hover {
-  background: rgba(184, 149, 74, 0.1);
-  border-color: rgba(212, 188, 122, 0.45);
+  background: rgba(255, 215, 0, 0.1);
+  border-color: rgba(255, 215, 0, 0.45);
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
 }
 
 .navbar-toggle:focus-visible {
-  outline: 2px solid rgba(201, 164, 77, 0.65);
+  outline: 2px solid rgba(255, 215, 0, 0.65);
   outline-offset: 2px;
 }
 
@@ -312,7 +312,7 @@
     background: rgba(10, 9, 8, 0.97);
     backdrop-filter: blur(18px) saturate(160%);
     -webkit-backdrop-filter: blur(18px) saturate(160%);
-    border-bottom: 1px solid rgba(184, 149, 74, 0.18);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.18);
     border-radius: 0 0 20px 20px;
     box-shadow:
       0 18px 48px rgba(0, 0, 0, 0.55),
@@ -351,7 +351,7 @@
   }
 
   .navbar-links li a.active {
-    background: rgba(184, 149, 74, 0.14);
+    background: rgba(255, 215, 0, 0.14);
   }
 }
 
