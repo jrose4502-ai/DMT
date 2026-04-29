@@ -2,10 +2,10 @@ import React from 'react';
 import '../styles/Services.css';
 import adImage from '../assets/images/GOLD DM AD.png';
 import BorderGlow from './BorderGlow';
-import iconLaptop from '../assets/images/icon-laptop.png';
-import iconRocket2 from '../assets/images/icon-rocket2.png';
-import iconMagnify from '../assets/images/icon-magnify.png';
-import iconChart from '../assets/images/icon-chart.png';
+import iconLaptop from '../assets/images/lap top new icon.png';
+import iconRocket2 from '../assets/images/rocket for new icon.png';
+import iconMagnify from '../assets/images/maginify glass for new icon.png';
+import iconChart from '../assets/images/chart for new icon.png';
 
 const Services = () => {
   const services = [
