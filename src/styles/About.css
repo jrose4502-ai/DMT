@@ -143,10 +143,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
+  background: linear-gradient(145deg, #e8d5a8 0%, #c9a44d 50%, #7d6230 100%);
   border-radius: var(--radius-md);
-  border: 2px solid rgba(201, 164, 77, 0.6);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), 0 0 12px rgba(201, 164, 77, 0.2);
+  border: 1px solid rgba(255, 248, 235, 0.35);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
   overflow: hidden;
   padding: 8px;
 }
@@ -156,6 +156,8 @@
   height: 100%;
   object-fit: contain;
   display: block;
+  /* multiply makes white pixels transparent, revealing gold bg underneath */
+  mix-blend-mode: multiply;
 }
 
 .approach-card h4 {
