@@ -2,6 +2,9 @@ import React from 'react';
 import '../styles/About.css';
 import julianRosarioPhoto from '../assets/images/julian portrait.png';
 import angieRossoPhoto from '../assets/images/angie-new.png';
+import iconTarget from '../assets/images/icon-target.png';
+import iconRocket from '../assets/images/icon-rocket.png';
+import iconShield from '../assets/images/icon-shield.png';
 
 const About = () => {
   return (
@@ -83,7 +86,7 @@ const About = () => {
           <div className="approach-grid">
             <div className="approach-card">
               <div className="approach-icon">
-                <i className="fas fa-bullseye"></i>
+                <img src={iconTarget} alt="Target" className="approach-icon-img" />
               </div>
               <h4>Data-Driven Decisions</h4>
               <p>
@@ -92,7 +95,7 @@ const About = () => {
             </div>
             <div className="approach-card">
               <div className="approach-icon">
-                <i className="fas fa-rocket"></i>
+                <img src={iconRocket} alt="Rocket" className="approach-icon-img" />
               </div>
               <h4>Fast Launch & Test</h4>
               <p>
@@ -101,7 +104,7 @@ const About = () => {
             </div>
             <div className="approach-card">
               <div className="approach-icon">
-                <i className="fas fa-shield-alt"></i>
+                <img src={iconShield} alt="Shield" className="approach-icon-img" />
               </div>
               <h4>You Own Everything</h4>
               <p>
