@@ -6,14 +6,12 @@ const CHARS =
 
 const MatrixRain = () => {
   const canvasRef = useRef(null);
-  const [reducedMotion] = useState(
-    () =>
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  );
+  const reducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   useEffect(() => {
-    if (reducedMotion) return undefined;
+    // Still render the canvas even with reduced-motion; CSS opacity keeps it hidden until hover.
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -78,8 +76,6 @@ const MatrixRain = () => {
       clearInterval(intervalId);
     };
   }, [reducedMotion]);
-
-  if (reducedMotion) return null;
 
   return (
     <canvas

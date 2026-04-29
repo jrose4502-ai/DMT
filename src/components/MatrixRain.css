@@ -3,38 +3,43 @@
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  opacity: 0;
+  /* Faint baseline so the effect is always present */
+  opacity: 0.15;
   mix-blend-mode: screen;
   transition: opacity 0.45s ease;
 }
 
-/* Digital rain only while hovering buttons or icon areas */
+/* Intensify on hover of buttons and icon-bearing elements */
 .app-matrix:has(.btn:hover) .matrix-rain-canvas,
 .app-matrix:has(.social-link:hover) .matrix-rain-canvas,
 .app-matrix:has(.navbar-logo:hover) .matrix-rain-canvas,
 .app-matrix:has(.navbar-toggle:hover) .matrix-rain-canvas,
-.app-matrix:has(.service-icon:hover) .matrix-rain-canvas,
-.app-matrix:has(.approach-icon:hover) .matrix-rain-canvas,
-.app-matrix:has(.contact-info-icon:hover) .matrix-rain-canvas,
+.app-matrix:has(.service-card:hover) .matrix-rain-canvas,
+.app-matrix:has(.approach-card:hover) .matrix-rain-canvas,
+.app-matrix:has(.contact-info-card:hover) .matrix-rain-canvas,
 .app-matrix:has(.scroll-to-top:hover) .matrix-rain-canvas,
 .app-matrix:has(.bella-bot-toggle:hover) .matrix-rain-canvas,
 .app-matrix:has(.bella-bot-input button[type="submit"]:hover) .matrix-rain-canvas,
 .app-matrix:has(.footer-brand-hit:hover) .matrix-rain-canvas {
-  opacity: 0.4;
+  opacity: 0.45;
 }
 
 @media (max-width: 768px) {
+  .matrix-rain-canvas {
+    opacity: 0.1;
+  }
+
   .app-matrix:has(.btn:hover) .matrix-rain-canvas,
   .app-matrix:has(.social-link:hover) .matrix-rain-canvas,
   .app-matrix:has(.navbar-logo:hover) .matrix-rain-canvas,
   .app-matrix:has(.navbar-toggle:hover) .matrix-rain-canvas,
-  .app-matrix:has(.service-icon:hover) .matrix-rain-canvas,
-  .app-matrix:has(.approach-icon:hover) .matrix-rain-canvas,
-  .app-matrix:has(.contact-info-icon:hover) .matrix-rain-canvas,
+  .app-matrix:has(.service-card:hover) .matrix-rain-canvas,
+  .app-matrix:has(.approach-card:hover) .matrix-rain-canvas,
+  .app-matrix:has(.contact-info-card:hover) .matrix-rain-canvas,
   .app-matrix:has(.scroll-to-top:hover) .matrix-rain-canvas,
   .app-matrix:has(.bella-bot-toggle:hover) .matrix-rain-canvas,
   .app-matrix:has(.bella-bot-input button[type="submit"]:hover) .matrix-rain-canvas,
   .app-matrix:has(.footer-brand-hit:hover) .matrix-rain-canvas {
-    opacity: 0.32;
+    opacity: 0.35;
   }
 }
