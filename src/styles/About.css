@@ -137,18 +137,18 @@
 }
 
 .approach-icon {
-  width: 72px;
-  height: 72px;
+  width: 80px;
+  height: 80px;
   margin: 0 auto var(--spacing-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(145deg, #e8d5a8 0%, #c9a44d 50%, #7d6230 100%);
+  background: #fff;
   border-radius: var(--radius-md);
-  border: 1px solid rgba(255, 248, 235, 0.35);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  border: 2px solid rgba(201, 164, 77, 0.6);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), 0 0 12px rgba(201, 164, 77, 0.2);
   overflow: hidden;
-  padding: 10px;
+  padding: 8px;
 }
 
 .approach-icon-img {
