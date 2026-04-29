@@ -58,8 +58,8 @@ const MatrixRain = () => {
         const y = drops[i] * fontSize;
         ctx.fillStyle =
           Math.random() > 0.96
-            ? "rgba(255, 255, 200, 0.95)"
-            : "rgba(255, 215, 0, 0.55)";
+            ? "rgba(255, 215, 106, 0.95)"
+            : "rgba(230, 184, 76, 0.55)";
         ctx.fillText(text, i * fontSize, y);
         if (y > h && Math.random() > 0.975) {
           drops[i] = 0;

@@ -3,6 +3,8 @@ import "../styles/Navbar.css";
 import BellaBot from './BellaBot';
 import BrandLogo from './BrandLogo';
 
+const CALENDLY_URL = "https://calendly.com/jrose4502/30min";
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -122,12 +124,10 @@ const Navbar = () => {
 
           <div className="navbar-actions">
             <a
-              href="#contact"
+              href={CALENDLY_URL}
               className="navbar-cta"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection('contact');
-              }}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Get Started
             </a>

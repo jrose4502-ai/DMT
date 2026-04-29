@@ -2,6 +2,8 @@ import React from 'react';
 import '../styles/Contact.css';
 import SignupForm from './SignupForm';
 
+const CALENDLY_URL = "https://calendly.com/jrose4502/30min";
+
 const Contact = () => {
   return (
     <section id="contact" className="contact section">
@@ -12,6 +14,14 @@ const Contact = () => {
             Take the first step and contact us to discuss your marketing and business goals. 
             We'll help turn your online presence into consistent revenue.
           </p>
+          <a
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary"
+          >
+            Book a 30-Min Call
+          </a>
         </div>
 
         <div className="contact-grid contact-grid-main">

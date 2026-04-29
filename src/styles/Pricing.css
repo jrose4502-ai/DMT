@@ -18,7 +18,7 @@
 }
 
 .pricing-grid::-webkit-scrollbar-thumb {
-  background: rgba(255, 215, 0, 0.45);
+  background: rgba(230, 184, 76, 0.45);
   border-radius: 4px;
 }
 
@@ -63,9 +63,9 @@
 }
 
 .pricing-card.highlight {
-  border: 2px solid rgba(255, 215, 0, 0.5);
+  border: 2px solid rgba(230, 184, 76, 0.5);
   transform: none;
-  box-shadow: 0 0 36px rgba(0, 0, 0, 0.45), 0 0 32px rgba(255, 215, 0, 0.12);
+  box-shadow: 0 0 36px rgba(0, 0, 0, 0.45), 0 0 32px rgba(230, 184, 76, 0.12);
   z-index: 1;
   background: rgba(16, 14, 12, 0.95);
 }
@@ -85,7 +85,7 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 var(--luxury-cta-border);
-  border: 1px solid rgba(255, 215, 0, 0.4);
+  border: 1px solid rgba(230, 184, 76, 0.4);
 }
 
 .pricing-header {
@@ -122,7 +122,7 @@
   font-size: clamp(1.1rem, 1.35vw, 1.75rem);
   font-weight: 700;
   color: var(--luxury-gold-bright);
-  text-shadow: 0 0 18px rgba(255, 215, 0, 0.25);
+  text-shadow: 0 0 18px rgba(230, 184, 76, 0.25);
   font-family: var(--heading-font);
   line-height: 1.2;
 }
@@ -159,9 +159,18 @@
 
 .pricing-card .btn-block {
   width: 100%;
-  margin-top: auto;
   text-align: center;
   box-sizing: border-box;
+}
+
+.pricing-actions {
+  display: grid;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.stripe-pay-btn {
+  border-color: rgba(255, 215, 106, 0.55);
 }
 
 /* Custom Packages Box */
@@ -232,7 +241,7 @@
   font-size: 2rem;
   color: var(--luxury-gold-bright);
   margin-bottom: var(--spacing-sm);
-  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.35));
+  filter: drop-shadow(0 0 10px rgba(230, 184, 76, 0.35));
 }
 
 .why-item h4 {

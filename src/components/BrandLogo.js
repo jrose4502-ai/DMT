@@ -1,5 +1,5 @@
 import React from "react";
-import logoImg from "../assets/images/header-dm-logo.png";
+import logoImg from "../assets/images/DM LOGO trans.png";
 
 export default function BrandLogo({ className = "" }) {
   return (
@@ -7,8 +7,8 @@ export default function BrandLogo({ className = "" }) {
       <img
         src={logoImg}
         alt=""
-        width="64"
-        height="64"
+        width="768"
+        height="768"
         decoding="async"
         className="brand-logo-img"
       />

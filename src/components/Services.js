@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/Services.css';
-import adImage from '../assets/images/GOLD DM AD.png';
+import adImage from '../assets/images/scale ur buisness new.png';
 import BorderGlow from './BorderGlow';
 import iconLaptop from '../assets/images/lap top new icon.png';
 import iconRocket2 from '../assets/images/rocket for new icon.png';
@@ -110,10 +110,10 @@ const Services = () => {
         <div className="services-ad-banner">
           <img
             src={adImage}
-            alt="Digital Marketrix — Transformative Digital Services"
+            alt="Scale your business with Digital Marketrix"
             className="ad-image"
-            width="1920"
-            height="1080"
+            width="1024"
+            height="582"
             loading="lazy"
             decoding="async"
           />

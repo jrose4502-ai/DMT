@@ -7,7 +7,7 @@
   height: 50px;
   background: var(--luxury-cta-bg);
   color: var(--luxury-cta-text);
-  border: 1px solid rgba(255, 215, 0, 0.5);
+  border: 1px solid rgba(230, 184, 76, 0.5);
   border-radius: var(--radius-md);
   font-size: 1.25rem;
   cursor: pointer;
@@ -24,7 +24,7 @@
 .scroll-to-top:hover {
   filter: brightness(1.06);
   transform: translateY(-4px);
-  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5), 0 0 24px rgba(255, 215, 0, 0.2);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5), 0 0 24px rgba(230, 184, 76, 0.2);
   color: var(--luxury-ink);
 }
 

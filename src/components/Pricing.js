@@ -1,6 +1,9 @@
 import React from 'react';
 import '../styles/Pricing.css';
 
+const CALENDLY_URL = "https://calendly.com/jrose4502/30min";
+const STRIPE_PAYMENT_URL = "https://buy.stripe.com/test_28EfZa59Jb2XbPEf5q4Rq00";
+
 const Pricing = () => {
   const packages = [
     {
@@ -86,9 +89,24 @@ const Pricing = () => {
                   </li>
                 ))}
               </ul>
-              <a href="#contact" className={`btn ${pkg.highlight ? 'btn-primary' : 'btn-secondary'} btn-block`}>
-                Choose {pkg.title}
-              </a>
+              <div className="pricing-actions">
+                <a
+                  href={CALENDLY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`btn ${pkg.highlight ? 'btn-primary' : 'btn-secondary'} btn-block`}
+                >
+                  Choose {pkg.title}
+                </a>
+                <a
+                  href={STRIPE_PAYMENT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-secondary btn-block stripe-pay-btn"
+                >
+                  Pay with Stripe
+                </a>
+              </div>
             </div>
           ))}
         </div>
@@ -105,7 +123,24 @@ const Pricing = () => {
               </p>
             </div>
             <div className="custom-cta">
-              <a href="#contact" className="btn btn-primary">Get a Custom Quote</a>
+              <div className="pricing-actions">
+                <a
+                  href={CALENDLY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary"
+                >
+                  Get a Custom Quote
+                </a>
+                <a
+                  href={STRIPE_PAYMENT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-secondary stripe-pay-btn"
+                >
+                  Pay with Stripe
+                </a>
+              </div>
             </div>
           </div>
         </div>

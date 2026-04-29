@@ -47,7 +47,7 @@ function ConditionalPlasma() {
 
   return (
     <Plasma
-      color="#ffd700"
+      color="#E6B84C"
       speed={0.55}
       direction="forward"
       scale={1.08}
@@ -75,7 +75,7 @@ function App() {
         COLOR_UPDATE_SPEED={1}
         SHADING={false}
         RAINBOW_MODE={false}
-        COLOR="#FFD700"
+        color="#E6B84C"
       />
       <div className="app-matrix-foreground">
         <Navbar />

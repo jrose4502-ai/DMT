@@ -6,37 +6,37 @@
 }
 
 :root {
-  /* Legacy “matrix” names — now gold (matches header / luxury palette) */
-  --matrix-green: #ffd700;
-  --matrix-green-soft: #ffe44d;
-  --matrix-green-dim: #b39500;
-  --matrix-text: rgba(247, 244, 239, 0.92);
-  --matrix-text-muted: rgba(230, 225, 215, 0.88);
-  --matrix-bg: #000000;
+  /* Gold system */
+  --matrix-green: #e6b84c;
+  --matrix-green-soft: #ffd76a;
+  --matrix-green-dim: #a8791d;
+  --matrix-text: rgba(230, 184, 76, 0.92);
+  --matrix-text-muted: rgba(212, 164, 55, 0.82);
+  --matrix-bg: #0A0A0A;
   --matrix-panel: rgba(14, 12, 10, 0.9);
-  --matrix-border: rgba(255, 215, 0, 0.28);
-  --matrix-glow: rgba(255, 215, 0, 0.38);
-  --gradient-matrix: linear-gradient(135deg, #0a0800 0%, #1a1400 45%, #2a2200 100%);
+  --matrix-border: rgba(230, 184, 76, 0.28);
+  --matrix-glow: rgba(255, 215, 106, 0.34);
+  --gradient-matrix: linear-gradient(135deg, #0a0a0a 0%, #111111 100%);
 
-  --primary-blue: #ffd700;
-  --primary-dark: #0a0800;
-  --light-blue: #f5efe4;
-  --medium-blue: #ffd700;
-  --bright-blue: #fff4a3;
-  --accent-blue: #e6c200;
-  --deep-blue: #806b00;
+  --primary-blue: #e6b84c;
+  --primary-dark: #0a0a0a;
+  --light-blue: #ffd76a;
+  --medium-blue: #d4a437;
+  --bright-blue: #ffc94d;
+  --accent-blue: #d4a437;
+  --deep-blue: #7a5a12;
   --gradient-blue: var(--gradient-matrix);
-  --text-dark: #0a0800;
+  --text-dark: #0a0a0a;
   --text-medium: var(--matrix-text-muted);
-  --text-light: rgba(255, 215, 0, 0.75);
+  --text-light: rgba(255, 215, 106, 0.82);
   --bg-white: #000000;
-  --bg-light: #0a0800;
-  --bg-lighter: #141100;
+  --bg-light: #0a0a0a;
+  --bg-lighter: #111111;
   --border-light: var(--matrix-border);
-  --success-green: #ffd700;
-  --lime-green: #ffe44d;
-  --lime-green-dark: #b39500;
-  --lime-green-glow: rgba(255, 215, 0, 0.35);
+  --success-green: #e6b84c;
+  --lime-green: #ffc94d;
+  --lime-green-dark: #a8791d;
+  --lime-green-glow: rgba(230, 184, 76, 0.32);
 
   --heading-font: "Space Grotesk", sans-serif;
   --body-font: "Inter", sans-serif;
@@ -60,21 +60,24 @@
   --navbar-height: 76px;
   --navbar-height-sm: 68px;
 
-  /* Luxury palette — black, ivory, muted gold (elegant, not neon) */
-  --luxury-black: #000000;
-  --luxury-ivory: #f7f4ef;
-  --luxury-ivory-soft: rgba(247, 244, 239, 0.88);
-  --luxury-mist: rgba(230, 225, 215, 0.55);
-  --luxury-gold: #e6c200;
-  --luxury-gold-bright: #ffe44d;
-  --luxury-gold-deep: #b39500;
-  --luxury-gold-glow: rgba(255, 215, 0, 0.22);
-  --luxury-ink: #0a0800;
-  --luxury-ink-muted: #141100;
-  --luxury-cta-bg: linear-gradient(155deg, #ffe44d 0%, #ffd700 42%, #b39500 100%);
-  --luxury-cta-text: #0a0800;
-  --luxury-cta-border: rgba(255, 250, 240, 0.35);
-  --luxury-body-muted: rgba(230, 225, 215, 0.88);
+  /* Luxury palette — black + gold */
+  --luxury-black: #0A0A0A;
+  --luxury-ivory: #e6b84c;
+  --luxury-ivory-soft: rgba(230, 184, 76, 0.9);
+  --luxury-mist: rgba(212, 164, 55, 0.76);
+  --luxury-gold: #e6b84c;
+  --luxury-gold-muted: #d4a437;
+  --luxury-gold-bright: #ffd76a;
+  --luxury-gold-deep: #7a5a12;
+  --luxury-gold-glow: rgba(255, 215, 106, 0.2);
+  --luxury-ink: #0a0a0a;
+  --luxury-ink-muted: #111111;
+  --luxury-cta-bg: linear-gradient(155deg, #0a0a0a 0%, #111111 100%);
+  --luxury-cta-text: #e6b84c;
+  --luxury-cta-border: rgba(212, 164, 55, 0.42);
+  --luxury-body-muted: rgba(212, 164, 55, 0.86);
+  --gold-text-glow: 0 0 14px rgba(255, 215, 106, 0.4);
+  --gold-box-glow: 0 0 20px rgba(255, 215, 106, 0.4);
 }
 
 html {
@@ -101,7 +104,7 @@ body {
   background: var(--matrix-bg);
   line-height: 1.6;
   overflow-x: hidden;
-  -webkit-tap-highlight-color: rgba(255, 215, 0, 0.18);
+  -webkit-tap-highlight-color: rgba(230, 184, 76, 0.18);
   padding-left: env(safe-area-inset-left, 0);
   padding-right: env(safe-area-inset-right, 0);
 }
@@ -119,7 +122,7 @@ body {
   width: 100%;
   height: 100%;
   background:
-    radial-gradient(ellipse at 18% 22%, rgba(255, 215, 0, 0.06) 0%, transparent 52%),
+    radial-gradient(ellipse at 18% 22%, rgba(230, 184, 76, 0.06) 0%, transparent 52%),
     radial-gradient(ellipse at 82% 78%, rgba(120, 98, 52, 0.05) 0%, transparent 48%),
     radial-gradient(ellipse at 50% 100%, rgba(40, 36, 28, 0.35) 0%, transparent 42%);
   pointer-events: none;
@@ -147,8 +150,8 @@ body {
 .app-matrix:has(.why-work-with-us:hover)::before,
 .app-matrix:has(.why-item:hover)::before {
   background:
-    radial-gradient(ellipse at 22% 28%, rgba(255, 215, 0, 0.11) 0%, transparent 54%),
-    radial-gradient(ellipse at 78% 72%, rgba(255, 215, 0, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 22% 28%, rgba(230, 184, 76, 0.11) 0%, transparent 54%),
+    radial-gradient(ellipse at 78% 72%, rgba(230, 184, 76, 0.08) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 100%, rgba(60, 52, 38, 0.14) 0%, transparent 46%);
 }
 
@@ -208,7 +211,7 @@ a {
 
 a:hover {
   color: var(--luxury-ivory);
-  text-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
+  text-shadow: 0 0 12px rgba(230, 184, 76, 0.25);
 }
 
 button {
