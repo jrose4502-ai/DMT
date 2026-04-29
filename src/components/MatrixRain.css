@@ -8,47 +8,33 @@
   transition: opacity 0.45s ease;
 }
 
-/* Digital rain only while hovering key interactive areas */
-.app-matrix:has(.service-card:hover) .matrix-rain-canvas,
-.app-matrix:has(.pricing-card:hover) .matrix-rain-canvas,
-.app-matrix:has(.navbar-links a:hover) .matrix-rain-canvas,
-.app-matrix:has(.navbar-logo:hover) .matrix-rain-canvas,
+/* Digital rain only while hovering buttons or icon areas */
 .app-matrix:has(.btn:hover) .matrix-rain-canvas,
-.app-matrix:has(.contact-info-card:hover) .matrix-rain-canvas,
-.app-matrix:has(.signup-card:hover) .matrix-rain-canvas,
-.app-matrix:has(.custom-packages-box:hover) .matrix-rain-canvas,
-.app-matrix:has(.approach-card:hover) .matrix-rain-canvas,
-.app-matrix:has(.founder-card:hover) .matrix-rain-canvas,
-.app-matrix:has(.footer-section a:hover) .matrix-rain-canvas,
 .app-matrix:has(.social-link:hover) .matrix-rain-canvas,
+.app-matrix:has(.navbar-logo:hover) .matrix-rain-canvas,
+.app-matrix:has(.navbar-toggle:hover) .matrix-rain-canvas,
+.app-matrix:has(.service-icon:hover) .matrix-rain-canvas,
+.app-matrix:has(.approach-icon:hover) .matrix-rain-canvas,
+.app-matrix:has(.contact-info-icon:hover) .matrix-rain-canvas,
 .app-matrix:has(.scroll-to-top:hover) .matrix-rain-canvas,
 .app-matrix:has(.bella-bot-toggle:hover) .matrix-rain-canvas,
-.app-matrix:has(.services-ad-banner:hover) .matrix-rain-canvas,
-.app-matrix:has(.why-work-with-us:hover) .matrix-rain-canvas,
-.app-matrix:has(.why-item:hover) .matrix-rain-canvas,
-.app-matrix:has(.hero-cta .btn:hover) .matrix-rain-canvas {
+.app-matrix:has(.bella-bot-input button[type="submit"]:hover) .matrix-rain-canvas,
+.app-matrix:has(.footer-brand-hit:hover) .matrix-rain-canvas {
   opacity: 0.4;
 }
 
 @media (max-width: 768px) {
-  .app-matrix:has(.service-card:hover) .matrix-rain-canvas,
-  .app-matrix:has(.pricing-card:hover) .matrix-rain-canvas,
-  .app-matrix:has(.navbar-links a:hover) .matrix-rain-canvas,
-  .app-matrix:has(.navbar-logo:hover) .matrix-rain-canvas,
   .app-matrix:has(.btn:hover) .matrix-rain-canvas,
-  .app-matrix:has(.contact-info-card:hover) .matrix-rain-canvas,
-  .app-matrix:has(.signup-card:hover) .matrix-rain-canvas,
-  .app-matrix:has(.custom-packages-box:hover) .matrix-rain-canvas,
-  .app-matrix:has(.approach-card:hover) .matrix-rain-canvas,
-  .app-matrix:has(.founder-card:hover) .matrix-rain-canvas,
-  .app-matrix:has(.footer-section a:hover) .matrix-rain-canvas,
   .app-matrix:has(.social-link:hover) .matrix-rain-canvas,
+  .app-matrix:has(.navbar-logo:hover) .matrix-rain-canvas,
+  .app-matrix:has(.navbar-toggle:hover) .matrix-rain-canvas,
+  .app-matrix:has(.service-icon:hover) .matrix-rain-canvas,
+  .app-matrix:has(.approach-icon:hover) .matrix-rain-canvas,
+  .app-matrix:has(.contact-info-icon:hover) .matrix-rain-canvas,
   .app-matrix:has(.scroll-to-top:hover) .matrix-rain-canvas,
   .app-matrix:has(.bella-bot-toggle:hover) .matrix-rain-canvas,
-  .app-matrix:has(.services-ad-banner:hover) .matrix-rain-canvas,
-  .app-matrix:has(.why-work-with-us:hover) .matrix-rain-canvas,
-  .app-matrix:has(.why-item:hover) .matrix-rain-canvas,
-  .app-matrix:has(.hero-cta .btn:hover) .matrix-rain-canvas {
+  .app-matrix:has(.bella-bot-input button[type="submit"]:hover) .matrix-rain-canvas,
+  .app-matrix:has(.footer-brand-hit:hover) .matrix-rain-canvas {
     opacity: 0.32;
   }
 }

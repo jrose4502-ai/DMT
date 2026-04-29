@@ -15,6 +15,18 @@
   pointer-events: none;
 }
 
+/* Static backdrop when prefers-reduced-motion — avoids GPU shaders */
+.app-plasma-fallback {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background:
+    radial-gradient(ellipse 120% 80% at 50% 100%, rgba(120, 90, 40, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 60% at 20% 30%, rgba(45, 62, 38, 0.45) 0%, transparent 50%),
+    linear-gradient(165deg, #050708 0%, #0a1210 45%, #060807 100%);
+}
+
 .app-matrix {
   position: relative;
   min-height: 100vh;
@@ -26,11 +38,45 @@
   z-index: 3;
 }
 
+/* Start the gold ribbon treatment below the hero so it carries the rest of the page */
+.app-matrix-foreground::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: clamp(700px, 94vh, 980px);
+  bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 18% 0%, rgba(212, 188, 122, 0.14) 0%, transparent 34%),
+    radial-gradient(ellipse at 78% 8%, rgba(184, 149, 74, 0.12) 0%, transparent 32%),
+    linear-gradient(115deg, transparent 0%, rgba(212, 188, 122, 0.06) 16%, transparent 32%, rgba(184, 149, 74, 0.05) 48%, transparent 64%, rgba(212, 188, 122, 0.04) 80%, transparent 100%),
+    linear-gradient(90deg, transparent 0%, rgba(212, 188, 122, 0.028) 28%, transparent 48%, rgba(157, 122, 53, 0.025) 70%, transparent 100%);
+  opacity: 0.95;
+}
+
+@media (max-width: 768px) {
+  .app-matrix-foreground::before {
+    top: clamp(560px, 82vh, 760px);
+    background:
+      radial-gradient(ellipse at 22% 0%, rgba(212, 188, 122, 0.12) 0%, transparent 34%),
+      radial-gradient(ellipse at 78% 10%, rgba(184, 149, 74, 0.1) 0%, transparent 30%),
+      linear-gradient(120deg, transparent 0%, rgba(212, 188, 122, 0.05) 18%, transparent 34%, rgba(184, 149, 74, 0.04) 52%, transparent 68%, rgba(212, 188, 122, 0.035) 82%, transparent 100%);
+  }
+}
+
 /* Container */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--spacing-md);
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
 }
 
 @media (min-width: 768px) {
@@ -43,6 +89,12 @@
 .section {
   padding: var(--spacing-2xl) 0;
   background: transparent;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--spacing-xl) 0;
+  }
 }
 
 .section-header {
@@ -146,6 +198,18 @@
   font-size: 1.125rem;
 }
 
+@media (max-width: 768px) {
+  .btn {
+    touch-action: manipulation;
+    min-height: 46px;
+  }
+
+  .btn-lg {
+    padding: 16px 28px;
+    font-size: 1.05rem;
+  }
+}
+
 /* Card Component */
 .card {
   background: rgba(12, 11, 10, 0.92);
@@ -176,3 +240,15 @@
 .mt-md { margin-top: var(--spacing-md); }
 .mt-lg { margin-top: var(--spacing-lg); }
 .mt-xl { margin-top: var(--spacing-xl); }
+
+/* ===== Reduced-motion: disable costly CSS transitions ===== */
+@media (prefers-reduced-motion: reduce) {
+  .section-title,
+  .card,
+  .btn,
+  .btn-primary,
+  .btn-secondary {
+    transition: none !important;
+    transform: none !important;
+  }
+}

@@ -108,6 +108,10 @@ const Services = () => {
             src={adImage}
             alt="Digital Marketrix — Transformative Digital Services"
             className="ad-image"
+            width="1920"
+            height="1080"
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </div>

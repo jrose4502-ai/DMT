@@ -1,14 +1,15 @@
 .bella-bot-container {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0));
+  right: calc(20px + env(safe-area-inset-right, 0));
   z-index: 2000;
   font-family: var(--body-font, "Inter", sans-serif);
 }
 
 .bella-bot-toggle {
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
+  touch-action: manipulation;
   border-radius: 50%;
   background: var(--luxury-cta-bg);
   color: var(--luxury-cta-text);
@@ -217,9 +218,16 @@
 }
 
 @media (max-width: 480px) {
+  .bella-bot-container {
+    bottom: calc(18px + env(safe-area-inset-bottom, 0));
+    right: calc(14px + env(safe-area-inset-right, 0));
+  }
+
   .bella-bot-window {
-    width: 300px;
-    height: 400px;
-    bottom: 70px;
+    width: min(340px, calc(100vw - 28px));
+    height: min(520px, calc(100dvh - 120px - env(safe-area-inset-bottom, 0)));
+    bottom: 72px;
+    right: 0;
+    max-height: calc(100dvh - 100px);
   }
 }

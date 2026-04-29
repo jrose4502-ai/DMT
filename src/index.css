@@ -56,9 +56,9 @@
   --radius-md: 8px;
   --radius-lg: 12px;
 
-  /* Navbar — used by Navbar.css + anchor scroll-margin (sized for large wordmark) */
-  --navbar-height: 200px;
-  --navbar-height-sm: 176px;
+  /* Navbar — compact wordmark keeps hero usable on phones (was ~200px / 176px) */
+  --navbar-height: 76px;
+  --navbar-height-sm: 68px;
 
   /* Luxury palette — black, ivory, muted gold (elegant, not neon) */
   --luxury-black: #050505;
@@ -87,7 +87,7 @@ html {
 
 @media (max-width: 768px) {
   html {
-    scroll-padding-top: calc(var(--navbar-height-sm) + env(safe-area-inset-top, 0px) + 24px);
+    scroll-padding-top: calc(var(--navbar-height-sm) + env(safe-area-inset-top, 0px) + 12px);
   }
 }
 
@@ -101,6 +101,9 @@ body {
   background: var(--matrix-bg);
   line-height: 1.6;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: rgba(201, 164, 77, 0.18);
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
 }
 
 .App {
@@ -213,4 +216,22 @@ button {
   cursor: pointer;
   border: none;
   outline: none;
+}
+
+/* ===== PERFORMANCE: below-fold sections ===== */
+#about, #services, #pricing, #contact, footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

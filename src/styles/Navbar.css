@@ -65,10 +65,10 @@
 
 .brand-logo-img {
   display: block;
-  /* 300% larger than 46px = 4× (46 → 184) */
-  height: 184px;
   width: auto;
-  max-width: min(800px, 95vw);
+  height: auto;
+  max-height: clamp(36px, 10vw, 52px);
+  max-width: min(220px, 62vw);
   object-fit: contain;
   object-position: left center;
   filter: drop-shadow(0 2px 10px rgba(201, 164, 77, 0.2));
@@ -281,9 +281,8 @@
   }
 
   .brand-logo-img {
-    /* 4× the previous 40px mobile size */
-    height: 160px;
-    max-width: min(720px, 95vw);
+    max-height: clamp(34px, 9.5vw, 44px);
+    max-width: min(200px, 56vw);
   }
 
   .navbar-cta {

@@ -1,7 +1,6 @@
 import React from 'react';
 import '../styles/Hero.css';
-import heroBg from '../assets/images/hero-bg-premium.png';
-import FloatingLines from './FloatingLines';
+import heroBg from '../assets/images/hero-header-gold.png';
 
 const Hero = () => {
   const scrollToSection = (sectionId) => {
@@ -14,20 +13,15 @@ const Hero = () => {
   return (
     <section id="home" className="hero">
       <div className="hero-bg-wrap">
-        <img src={heroBg} alt="" className="hero-bg" />
-        <div className="hero-floating-lines" aria-hidden="true">
-          <FloatingLines
-            enabledWaves={['top', 'middle', 'bottom']}
-            lineCount={[14, 20, 26]}
-            lineDistance={[7, 5, 4]}
-            bendRadius={5.0}
-            bendStrength={-0.5}
-            interactive
-            parallax
-            linesGradient={['#c9a44d', '#d4bc7a', '#6b5428', '#f5efe4']}
-            mixBlendMode="screen"
+        <img
+            src={heroBg}
+            alt=""
+            className="hero-bg"
+            width="1024"
+            height="571"
+            fetchpriority="high"
+            decoding="async"
           />
-        </div>
         <div className="hero-overlay" aria-hidden="true" />
       </div>
       <div className="container">

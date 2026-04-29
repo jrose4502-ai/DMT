@@ -678,6 +678,10 @@ export default function SplashCursor({
 
     function updateFrame() {
       if (!isActive) return;
+      if (typeof document !== 'undefined' && document.hidden) {
+        animationFrameId.current = requestAnimationFrame(updateFrame);
+        return;
+      }
       const dt = calcDeltaTime();
       if (resizeCanvas()) initFramebuffers();
       updateColors(dt);

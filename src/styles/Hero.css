@@ -26,16 +26,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
   pointer-events: none;
-}
-
-/* FloatingLines between photo and overlay — screen blend fills dark areas with line glow */
-.hero-floating-lines {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: auto;
+  filter: saturate(1.03) contrast(1.02);
 }
 
 .hero-overlay {
@@ -44,20 +37,21 @@
   left: 0;
   width: 100%;
   height: 100%;
-  /* Lighter veil so the hero photo stays the star; lines show in shadows via screen layer below */
+  /* Keep the image visible while still blending into the darker body below */
   background: linear-gradient(
     180deg,
-    rgba(0, 12, 8, 0.42) 0%,
-    rgba(0, 22, 14, 0.38) 45%,
-    rgba(0, 10, 6, 0.5) 100%
+    rgba(0, 0, 0, 0.04) 0%,
+    rgba(8, 7, 5, 0.12) 34%,
+    rgba(10, 8, 6, 0.32) 68%,
+    rgba(6, 5, 4, 0.74) 100%
   );
-  z-index: 2;
+  z-index: 1;
   pointer-events: none;
 }
 
 .hero .container {
   position: relative;
-  z-index: 3;
+  z-index: 2;
   pointer-events: none;
 }
 
@@ -66,6 +60,23 @@
   margin: 0 auto;
   text-align: center;
   pointer-events: auto;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(7, 7, 7, 0.38) 0%, rgba(7, 7, 7, 0.18) 100%);
+  backdrop-filter: blur(2px);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(70px, 12vw, 120px);
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 0%, rgba(5, 5, 5, 0.26) 38%, rgba(5, 5, 5, 0.92) 100%);
 }
 
 
@@ -130,18 +141,37 @@
 /* Responsive */
 @media (max-width: 768px) {
   .hero {
-    min-height: 70vh;
-    padding: var(--spacing-xl) 0;
+    min-height: min(85vh, 720px);
+    padding: var(--spacing-lg) 0 var(--spacing-xl);
+  }
+
+  .hero-content {
+    padding: var(--spacing-sm);
+    border-radius: 22px;
+  }
+
+  .hero-title {
+    font-size: clamp(1.65rem, 7vw, 2.35rem);
+    hyphens: auto;
+    overflow-wrap: break-word;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 4vw, 1.125rem);
+    padding: 0 var(--spacing-xs);
   }
 
   .hero-cta {
     flex-direction: column;
     align-items: stretch;
+    gap: var(--spacing-sm);
   }
 
   .hero-cta .btn {
     width: 100%;
-    max-width: 320px;
+    max-width: none;
     margin: 0 auto;
+    min-height: 48px;
+    touch-action: manipulation;
   }
 }

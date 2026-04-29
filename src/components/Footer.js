@@ -25,6 +25,9 @@ const Footer = () => {
                 src={footerBrandLogo}
                 alt=""
                 className="footer-brand-logo"
+                width="320"
+                height="180"
+                loading="lazy"
                 decoding="async"
               />
             </button>

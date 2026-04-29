@@ -115,7 +115,7 @@ const Pricing = () => {
           <div className="why-grid">
             <div className="why-item">
               <i className="fas fa-users"></i>
-              <h4>Built for small businesses</h4>
+              <h4>Built for large and small businesses</h4>
             </div>
             <div className="why-item">
               <i className="fas fa-magic"></i>

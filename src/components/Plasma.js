@@ -91,6 +91,10 @@ export default function Plasma({
   scale = 1,
   opacity = 1,
   mouseInteractive = false,
+  maxDpr = 2,
+  resolutionScale = 1,
+  /** Cap render rate (0 = uncapped). Saves GPU when effects are enabled. */
+  maxFps = 0,
 }) {
   const containerRef = useRef(null);
   const mousePos = useRef({ x: 0, y: 0 });
@@ -108,7 +112,7 @@ export default function Plasma({
       webgl: 2,
       alpha: true,
       antialias: false,
-      dpr: Math.min(window.devicePixelRatio || 1, 2),
+      dpr: Math.min(window.devicePixelRatio || 1, maxDpr),
     });
     const gl = renderer.gl;
     const canvas = gl.canvas;
@@ -154,9 +158,9 @@ export default function Plasma({
 
     const setSize = () => {
       const rect = containerRef.current.getBoundingClientRect();
-      const width = Math.max(1, Math.floor(rect.width));
-      const height = Math.max(1, Math.floor(rect.height));
-      renderer.setSize(width, height);
+      const rw = Math.max(1, Math.floor(rect.width * resolutionScale));
+      const rh = Math.max(1, Math.floor(rect.height * resolutionScale));
+      renderer.setSize(rw, rh);
       const res = program.uniforms.iResolution.value;
       res[0] = gl.drawingBufferWidth;
       res[1] = gl.drawingBufferHeight;
@@ -166,9 +170,21 @@ export default function Plasma({
     ro.observe(containerEl);
     setSize();
 
+    let docHidden = typeof document !== "undefined" ? document.hidden : false;
+    const onVisibility = () => {
+      docHidden = document.hidden;
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
+    const minFrameMs = maxFps > 0 ? 1000 / maxFps : 0;
+    let lastPaint = 0;
     let raf = 0;
     const t0 = performance.now();
     const loop = (t) => {
+      raf = requestAnimationFrame(loop);
+      if (docHidden) return;
+      if (minFrameMs > 0 && t - lastPaint < minFrameMs) return;
+      lastPaint = t;
       let timeValue = (t - t0) * 0.001;
       if (direction === "pingpong") {
         const pingpongDuration = 10;
@@ -185,11 +201,11 @@ export default function Plasma({
         program.uniforms.iTime.value = timeValue;
       }
       renderer.render({ scene: mesh });
-      raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
 
     return () => {
+      document.removeEventListener("visibilitychange", onVisibility);
       cancelAnimationFrame(raf);
       ro.disconnect();
       if (mouseInteractive && containerEl) {
@@ -201,7 +217,7 @@ export default function Plasma({
         // Canvas already removed
       }
     };
-  }, [color, speed, direction, scale, opacity, mouseInteractive]);
+  }, [color, speed, direction, scale, opacity, mouseInteractive, maxDpr, resolutionScale, maxFps]);
 
   return <div ref={containerRef} className="plasma-container" />;
 }

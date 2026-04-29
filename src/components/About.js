@@ -44,6 +44,10 @@ const About = () => {
                   src={julianRosarioPhoto}
                   alt="Julian Rosario"
                   className="founder-image"
+                  width="440"
+                  height="440"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="founder-info">
@@ -57,6 +61,10 @@ const About = () => {
                   src={angieRossoPhoto}
                   alt="Angie Rosso"
                   className="founder-image"
+                  width="424"
+                  height="424"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="founder-info">

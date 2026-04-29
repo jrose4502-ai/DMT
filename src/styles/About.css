@@ -45,8 +45,8 @@
 }
 
 .founder-image-wrap {
-  width: 220px;
-  height: 220px;
+  width: clamp(320px, 34vw, 440px);
+  height: clamp(320px, 34vw, 440px);
   margin: 0 auto var(--spacing-md);
   overflow: hidden;
   border-radius: 50%;
@@ -117,7 +117,7 @@
 
 .approach-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: var(--spacing-lg);
 }
 
