@@ -2,11 +2,15 @@ import React from 'react';
 import '../styles/Services.css';
 import adImage from '../assets/images/GOLD DM AD.png';
 import BorderGlow from './BorderGlow';
+import iconLaptop from '../assets/images/icon-laptop.png';
+import iconRocket2 from '../assets/images/icon-rocket2.png';
+import iconMagnify from '../assets/images/icon-magnify.png';
+import iconChart from '../assets/images/icon-chart.png';
 
 const Services = () => {
   const services = [
     {
-      icon: 'fas fa-laptop-code',
+      icon: iconLaptop,
       title: 'Web Design & Development',
       description:
         'Build stunning, responsive websites that convert visitors into customers. High-quality, conversion-focused design that works 24/7.',
@@ -18,7 +22,7 @@ const Services = () => {
       ],
     },
     {
-      icon: 'fas fa-rocket',
+      icon: iconRocket2,
       title: 'Digital Marketing Strategy',
       description:
         'Data-driven plans that grow your brand, reach the right audience, and improve ROI across channels.',
@@ -30,7 +34,7 @@ const Services = () => {
       ],
     },
     {
-      icon: 'fas fa-search',
+      icon: iconMagnify,
       title: 'SEO & Visibility',
       description:
         'Boost visibility and organic traffic with technical SEO, on-page optimization, and measurable results.',
@@ -42,7 +46,7 @@ const Services = () => {
       ],
     },
     {
-      icon: 'fas fa-chart-line',
+      icon: iconChart,
       title: 'Analytics & Optimization',
       description:
         'Make data-driven decisions with dashboards, testing, and reporting that tie effort to revenue.',
@@ -83,7 +87,7 @@ const Services = () => {
             >
               <div className="service-card-inner">
                 <div className="service-icon">
-                  <i className={service.icon}></i>
+                  <img src={service.icon} alt="" className="service-icon-img" />
                 </div>
                 <h3 className="service-title">{service.title}</h3>
                 <p className="service-description">{service.description}</p>
