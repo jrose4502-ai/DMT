@@ -6,11 +6,12 @@ const SplashCursor = lazy(() => import("./SplashCursor"));
  * Defers loading the WebGL splash cursor until the browser is idle so main-thread
  * work for LCP/FCP stays prioritized. Skipped entirely when reduced motion is requested.
  */
-export default function DeferredSplashCursor(props) {
+export default function DeferredSplashCursor({ disabled = false, ...props }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return undefined;
+    if (disabled) return undefined;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return undefined;
     }
@@ -22,9 +23,9 @@ export default function DeferredSplashCursor(props) {
     }
     const id = window.setTimeout(() => setReady(true), 1);
     return () => window.clearTimeout(id);
-  }, []);
+  }, [disabled]);
 
-  if (!ready) return null;
+  if (disabled || !ready) return null;
 
   return (
     <Suspense fallback={null}>

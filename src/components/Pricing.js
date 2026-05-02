@@ -96,7 +96,7 @@ const Pricing = () => {
                   rel="noopener noreferrer"
                   className={`btn ${pkg.highlight ? 'btn-primary' : 'btn-secondary'} btn-block`}
                 >
-                  Choose {pkg.title}
+                  Book a Call for {pkg.title}
                 </a>
                 <a
                   href={STRIPE_PAYMENT_URL}
@@ -130,7 +130,7 @@ const Pricing = () => {
                   rel="noopener noreferrer"
                   className="btn btn-primary"
                 >
-                  Get a Custom Quote
+                  Get Your Custom Plan
                 </a>
                 <a
                   href={STRIPE_PAYMENT_URL}

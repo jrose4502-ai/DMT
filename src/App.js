@@ -9,39 +9,117 @@ import DeferredSplashCursor from "./components/DeferredSplashCursor";
 
 const About = lazy(() => import("./components/About"));
 const Services = lazy(() => import("./components/Services"));
+const Results = lazy(() => import("./components/Results"));
 const Pricing = lazy(() => import("./components/Pricing"));
 const Contact = lazy(() => import("./components/Contact"));
 const Footer = lazy(() => import("./components/Footer"));
 
-function ConditionalPlasma() {
-  const [reducedMotion, setReducedMotion] = useState(() =>
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  );
-  const [maxFps, setMaxFps] = useState(0);
+function getPerformanceProfile() {
+  if (typeof window === "undefined") {
+    return {
+      reducedMotion: false,
+      tier: "high",
+      maxPlasmaFps: 0,
+      showPlasma: true,
+      showSplashCursor: true,
+      showMatrixRain: true,
+      matrixStaticMode: false,
+      matrixFrameMs: 90,
+      matrixDprCap: 1.2,
+      matrixMobileFont: 12,
+      matrixDesktopFont: 16,
+      matrixColumnStep: 2,
+    };
+  }
+
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+  const coarse = window.matchMedia("(pointer: coarse)").matches;
+  const width = window.innerWidth;
+  const deviceMemory = navigator.deviceMemory ?? 8;
+  const cpuCores = navigator.hardwareConcurrency ?? 8;
+  const lowCapacityDevice = deviceMemory <= 4 || cpuCores <= 4;
+
+  let tier = "high";
+  if (reducedMotion || lowCapacityDevice || width < 480) tier = "low";
+  else if (coarse || width < 900 || deviceMemory <= 6 || cpuCores <= 6) {
+    tier = "medium";
+  }
+
+  if (tier === "low") {
+    return {
+      reducedMotion,
+      tier,
+      maxPlasmaFps: 0,
+      showPlasma: false,
+      showSplashCursor: false,
+      showMatrixRain: true,
+      matrixStaticMode: false,
+      matrixFrameMs: 140,
+      matrixDprCap: 1,
+      matrixMobileFont: 10,
+      matrixDesktopFont: 14,
+      matrixColumnStep: 4,
+    };
+  }
+
+  if (tier === "medium") {
+    const tabletLike = coarse && width >= 768;
+    return {
+      reducedMotion,
+      tier,
+      maxPlasmaFps: tabletLike ? 0 : 24,
+      showPlasma: !tabletLike,
+      showSplashCursor: false,
+      showMatrixRain: true,
+      matrixStaticMode: false,
+      matrixFrameMs: tabletLike ? 130 : 105,
+      matrixDprCap: tabletLike ? 1 : 1.2,
+      matrixMobileFont: 11,
+      matrixDesktopFont: tabletLike ? 16 : 15,
+      matrixColumnStep: tabletLike ? 4 : 3,
+    };
+  }
+
+  return {
+    reducedMotion,
+    tier,
+    maxPlasmaFps: 0,
+    showPlasma: true,
+    showSplashCursor: true,
+    showMatrixRain: true,
+    matrixStaticMode: false,
+    matrixFrameMs: 90,
+    matrixDprCap: 1.2,
+    matrixMobileFont: 12,
+    matrixDesktopFont: 16,
+    matrixColumnStep: 2,
+  };
+}
+
+function usePerformanceProfile() {
+  const [profile, setProfile] = useState(() => getPerformanceProfile());
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const onReduce = () => setReducedMotion(mq.matches);
-    mq.addEventListener("change", onReduce);
-
-    const updateFps = () => {
-      const w = window.innerWidth;
-      const coarse = window.matchMedia("(pointer: coarse)").matches;
-      if (w < 480) setMaxFps(20);
-      else if (w < 768 || coarse) setMaxFps(28);
-      else setMaxFps(0);
-    };
-    updateFps();
-    window.addEventListener("resize", updateFps);
+    const onProfileChange = () => setProfile(getPerformanceProfile());
+    mq.addEventListener("change", onProfileChange);
+    window.addEventListener("resize", onProfileChange);
+    window.addEventListener("orientationchange", onProfileChange);
 
     return () => {
-      mq.removeEventListener("change", onReduce);
-      window.removeEventListener("resize", updateFps);
+      mq.removeEventListener("change", onProfileChange);
+      window.removeEventListener("resize", onProfileChange);
+      window.removeEventListener("orientationchange", onProfileChange);
     };
   }, []);
 
-  if (reducedMotion) {
+  return profile;
+}
+
+function ConditionalPlasma({ reducedMotion, maxFps, disabled }) {
+  if (reducedMotion || disabled) {
     return <div className="app-plasma-fallback" aria-hidden />;
   }
 
@@ -59,13 +137,28 @@ function ConditionalPlasma() {
 }
 
 function App() {
+  const profile = usePerformanceProfile();
+
   return (
     <div className="App app-matrix">
       <div className="app-plasma-background" aria-hidden="true">
-        <ConditionalPlasma />
+        <ConditionalPlasma
+          reducedMotion={profile.reducedMotion}
+          maxFps={profile.maxPlasmaFps}
+          disabled={!profile.showPlasma}
+        />
       </div>
-      <MatrixRain />
+      <MatrixRain
+        disabled={!profile.showMatrixRain}
+        staticMode={profile.matrixStaticMode}
+        frameMsOverride={profile.matrixFrameMs}
+        dprCap={profile.matrixDprCap}
+        mobileFontSize={profile.matrixMobileFont}
+        desktopFontSize={profile.matrixDesktopFont}
+        columnStep={profile.matrixColumnStep}
+      />
       <DeferredSplashCursor
+        disabled={!profile.showSplashCursor}
         DENSITY_DISSIPATION={10}
         VELOCITY_DISSIPATION={1.5}
         PRESSURE={0}
@@ -85,6 +178,9 @@ function App() {
         </Suspense>
         <Suspense fallback={null}>
           <Services />
+        </Suspense>
+        <Suspense fallback={null}>
+          <Results />
         </Suspense>
         <Suspense fallback={null}>
           <Pricing />

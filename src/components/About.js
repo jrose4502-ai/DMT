@@ -11,9 +11,9 @@ const About = () => {
     <section id="about" className="about section">
       <div className="container">
         <div className="section-header">
-          <h2 className="section-title">SEO and Marketing That Drive Real Growth</h2>
+          <h2 className="section-title">Why Businesses Trust Digital Marketrix</h2>
           <p className="section-subtitle">
-            From custom websites to SEO and paid ads, Digital Marketrix helps business owners build a stronger online presence and generate more revenue.
+            You are not hiring another generic agency. You are working directly with founders who build your growth system, manage execution, and optimize for revenue.
           </p>
         </div>
 

@@ -27,28 +27,32 @@ const Hero = () => {
       <div className="container">
         <div className="hero-content">
           <h1 className="hero-title">
-            Digital Marketing Built to Grow Your Business
+            We Build Systems That Bring You Customers Daily
           </h1>
           <p className="hero-subtitle">
-            We create premium websites, powerful marketing strategies, and
-            conversion-focused campaigns designed to help your business stand
-            out, attract customers, and scale with confidence.
+            We help local service businesses turn their website into a lead machine
+            using conversion-first web design, SEO, and paid traffic systems.
           </p>
           <div className="hero-cta">
             <button
               type="button"
-              onClick={() => scrollToSection('services')}
+              onClick={() => scrollToSection('contact')}
               className="btn btn-primary btn-lg"
             >
-              Explore Our Solutions
+              Book Your Strategy Call
             </button>
             <button
               type="button"
-              onClick={() => scrollToSection('contact')}
+              onClick={() => scrollToSection('pricing')}
               className="btn btn-secondary btn-lg"
             >
-              Learn More
+              Get Free Website Audit
             </button>
+          </div>
+          <div className="hero-proof-strip" aria-label="Trust and positioning highlights">
+            <span>Built for local businesses</span>
+            <span>Web + SEO + paid ads under one team</span>
+            <span>Focused on qualified leads and revenue</span>
           </div>
         </div>
       </div>

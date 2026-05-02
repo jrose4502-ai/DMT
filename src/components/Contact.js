@@ -9,10 +9,9 @@ const Contact = () => {
     <section id="contact" className="contact section">
       <div className="container">
         <div className="section-header">
-          <h2 className="section-title">Let's Get Started</h2>
+          <h2 className="section-title">Ready for More Qualified Leads?</h2>
           <p className="section-subtitle">
-            Take the first step and contact us to discuss your marketing and business goals. 
-            We'll help turn your online presence into consistent revenue.
+            Book a strategy call or request your free website audit. We'll map the exact fixes that can turn your site into a consistent lead source.
           </p>
           <a
             href={CALENDLY_URL}
@@ -20,7 +19,7 @@ const Contact = () => {
             rel="noopener noreferrer"
             className="btn btn-primary"
           >
-            Book a 30-Min Call
+            Book Your Strategy Call
           </a>
         </div>
 

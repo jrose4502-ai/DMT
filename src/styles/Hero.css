@@ -122,6 +122,24 @@
   margin-top: var(--spacing-xl);
 }
 
+.hero-proof-strip {
+  margin-top: var(--spacing-md);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.hero-proof-strip span {
+  border: 1px solid rgba(230, 184, 76, 0.35);
+  background: rgba(8, 8, 8, 0.42);
+  color: var(--luxury-ivory-soft);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+}
+
 .hero-cta .btn-secondary {
   background: rgba(8, 8, 8, 0.5);
   color: var(--luxury-ivory-soft);
@@ -163,6 +181,10 @@
     flex-direction: column;
     align-items: stretch;
     gap: var(--spacing-sm);
+  }
+
+  .hero-proof-strip {
+    justify-content: flex-start;
   }
 
   .hero-cta .btn {
