@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../styles/BellaBot.css';
 
 const INITIAL_MESSAGE =
-  "Hi! I'm Bella, your Digital Marketrix assistant. Ask about our services and pricing — use Book strategy call for instant scheduling, Build my custom plan for a tailored outline, Request a specific time to tell us a preferred slot by email, or Email conversation to team to send this chat to Julian.";
+  "Hi! I'm Bella, your Digital Marketrix assistant. Ask about our services and pricing. Use Book strategy call for instant scheduling, Build my custom plan for a tailored outline, Request a specific time to tell us a preferred slot by email, or Email conversation to team to send this chat to Julian.";
 const CALENDLY_URL = 'https://calendly.com/jrose4502/30min';
 
 const URL_IN_TEXT = /https?:\/\/[^\s<>"{}|\\^`[\]]+/gi;
@@ -133,7 +133,7 @@ const BellaBot = () => {
   const handleQuickBook = () => {
     setShowScheduler(true);
     addAssistantMessage(
-      "Here's our live calendar — choose a time that works for you. You'll get a confirmation email with your meeting details."
+      "Here's our live calendar. Choose a time that works for you. You'll get a confirmation email with your meeting details."
     );
   };
 
@@ -172,7 +172,7 @@ const BellaBot = () => {
       if (!res.ok) throw new Error(data.error || 'Request failed');
 
       addAssistantMessage(
-        "Done — I've emailed this conversation to the Digital Marketrix team. They'll reply when a human answer is needed."
+        "Done. I've emailed this conversation to the Digital Marketrix team. They'll reply when a human answer is needed."
       );
       setShowEmailTranscript(false);
     } catch (_) {
@@ -212,7 +212,7 @@ const BellaBot = () => {
       if (!res.ok) throw new Error(data.error || 'Request failed');
 
       addAssistantMessage(
-        "Got it — I've sent your preferred time to the team. Check your email for a quick confirmation. For the fastest booking, you can also grab any open slot here: https://calendly.com/jrose4502/30min"
+        "Got it. I've sent your preferred time to the team. Check your email for a quick confirmation. For the fastest booking, you can also grab any open slot here: https://calendly.com/jrose4502/30min"
       );
       setShowTimeRequest(false);
       setTimeRequest((prev) => ({
@@ -300,7 +300,7 @@ const BellaBot = () => {
         {
           role: 'assistant',
           text:
-            "Sorry, I'm having trouble connecting right now. Please email info@digitalmarketrix.com or book directly at https://calendly.com/jrose4502/30min — we'll get back to you!",
+            "Sorry, I'm having trouble connecting right now. Please email info@digitalmarketrix.com or book directly at https://calendly.com/jrose4502/30min. We'll get back to you!",
         },
       ]);
     } finally {
@@ -470,7 +470,7 @@ const BellaBot = () => {
           {showTimeRequest && (
             <form className="bella-plan-form bella-aux-form" onSubmit={handleTimeRequestSubmit}>
               <p className="bella-aux-hint">
-                Tell us when you want to meet — we email the team and you get a confirmation message. For instant booking,
+                Tell us when you want to meet. We email the team and you get a confirmation message. For instant booking,
                 use Book strategy call.
               </p>
               <input

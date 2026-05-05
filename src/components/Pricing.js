@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/Pricing.css';
 
 const CALENDLY_URL = "https://calendly.com/jrose4502/30min";
-const STRIPE_PAYMENT_URL = "https://buy.stripe.com/test_28EfZa59Jb2XbPEf5q4Rq00";
+const STRIPE_PAYMENT_URL = "https://buy.stripe.com/28E4gs0Ttc712f43mI4Rq01";
 
 const Pricing = () => {
   const packages = [
@@ -10,7 +10,7 @@ const Pricing = () => {
       title: 'Growth Package',
       subtitle: 'For businesses ready to attract more customers',
       price: '$1,000 - $2,500',
-      stripeUrl: 'https://buy.stripe.com/28EfZa59Jb2XbPEf5q4Rq00',
+      stripeUrl: 'https://buy.stripe.com/28E4gs0Ttc712f43mI4Rq01',
       features: [
         'Everything in Starter',
         'Advanced SEO Optimization',
