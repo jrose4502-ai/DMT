@@ -23,6 +23,7 @@ const Pricing = () => {
       title: 'Premium Package',
       subtitle: 'For businesses ready to scale and dominate online',
       price: '$2,500+',
+      stripeUrl: 'https://buy.stripe.com/14AfZadGffjd2f46yU4Rq02',
       features: [
         'Everything in Growth',
         'Paid Ads Setup & Management',
