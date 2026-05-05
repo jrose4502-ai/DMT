@@ -11,7 +11,7 @@ Digital Marketrix is a digital marketing agency founded by Julian Rosario and An
 ## 📞 Contact Information
 
 - **Location**: Los Angeles, California
-- **Phone**: 1(559) 557-8224
+- **Phone**: (559) 557-8224
 - **Email**: info@digitalmarketrix.com
 
 ## ✨ Features
@@ -135,7 +135,7 @@ This is a private company website. For inquiries, please contact us at info@digi
 
 ## 📧 Support
 
-For support, email info@digitalmarketrix.com or call 1(559) 557-8224
+For support, email info@digitalmarketrix.com or call (559) 557-8224
 
 ---
 

@@ -85,7 +85,7 @@ const Footer = () => {
               </li>
               <li>
                 <i className="fas fa-phone"></i>{' '}
-                <a href="tel:+15595578224">1(559) 557-8224</a>
+                <a href="tel:+15595578224">(559) 557-8224</a>
               </li>
               <li>
                 <i className="fas fa-envelope"></i> info@digitalmarketrix.com

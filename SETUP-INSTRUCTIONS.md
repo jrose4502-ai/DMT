@@ -70,7 +70,7 @@ website/
 - **Company**: Digital Marketrix
 - **Location**: Los Angeles, California
 - **Founders**: Julian Rosario & Angie Rosso
-- **Phone**: 1(559) 557-8224
+- **Phone**: (559) 557-8224
 - **Email**: info@digitalmarketrix.com
 
 ## 🎨 Customization
