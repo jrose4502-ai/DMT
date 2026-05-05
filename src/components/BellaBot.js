@@ -1,39 +1,96 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/BellaBot.css';
 
-const INITIAL_MESSAGE = "Hi! I'm Bella, your Digital Marketrix assistant. How can I help you grow your business today?";
-const CALENDLY_URL = "https://calendly.com/jrose4502/30min";
+const INITIAL_MESSAGE =
+  "Hi! I'm Bella, your Digital Marketrix assistant. Ask me about growing your business, or tap Book Strategy Call to schedule a free strategy session on the calendar.";
+const CALENDLY_URL = 'https://calendly.com/jrose4502/30min';
+
+const URL_IN_TEXT = /https?:\/\/[^\s<>"{}|\\^`[\]]+/gi;
+
+function parseMessageSegments(text) {
+  if (!text) return [{ type: 'text', value: '' }];
+  const segments = [];
+  let last = 0;
+  const re = new RegExp(URL_IN_TEXT.source, URL_IN_TEXT.flags);
+  let m;
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > last) {
+      segments.push({ type: 'text', value: text.slice(last, m.index) });
+    }
+    const raw = m[0];
+    const href = raw.replace(/[.,);:!?]+$/u, '');
+    segments.push({ type: 'link', value: href });
+    last = m.index + raw.length;
+  }
+  if (last < text.length) {
+    segments.push({ type: 'text', value: text.slice(last) });
+  }
+  if (segments.length === 0) segments.push({ type: 'text', value: text });
+  return segments;
+}
+
+function linkAnchorLabel(href) {
+  try {
+    const u = new URL(href);
+    if (u.hostname.includes('calendly.com')) return 'Schedule your call';
+  } catch (_) {
+    /* ignore */
+  }
+  return 'Open link';
+}
+
+function MessageBody({ text }) {
+  const segments = parseMessageSegments(text);
+  return (
+    <>
+      {segments.map((seg, i) =>
+        seg.type === 'link' ? (
+          <a
+            key={`${seg.value}-${i}`}
+            href={seg.value}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bella-inline-link"
+          >
+            {linkAnchorLabel(seg.value)}
+          </a>
+        ) : (
+          <span key={i}>{seg.value}</span>
+        )
+      )}
+    </>
+  );
+}
 
 function buildPlanSummary({ businessType, monthlyBudget, timeline, goals }) {
   const budget = Number(monthlyBudget || 0);
-  let tier = "starter";
-  if (budget >= 3000) tier = "growth";
-  if (budget >= 7000) tier = "scale";
+  let tier = 'starter';
+  if (budget >= 3000) tier = 'growth';
+  if (budget >= 7000) tier = 'scale';
 
   const planByTier = {
     starter:
-      "Starter Plan: conversion-focused website updates, local SEO foundation, and a lightweight ad test to validate audience demand.",
+      'Starter Plan: conversion-focused website updates, local SEO foundation, and a lightweight ad test to validate audience demand.',
     growth:
-      "Growth Plan: full funnel optimization with SEO content sprint, paid ads management, and conversion tracking improvements.",
+      'Growth Plan: full funnel optimization with SEO content sprint, paid ads management, and conversion tracking improvements.',
     scale:
-      "Scale Plan: multi-channel performance engine with advanced creatives, CRO testing, and weekly optimization cadence.",
+      'Scale Plan: multi-channel performance engine with advanced creatives, CRO testing, and weekly optimization cadence.',
   };
 
-  const timelineText = timeline || "your preferred timeline";
-  const businessText = businessType || "your business";
-  const goalsText = goals || "qualified leads and consistent revenue growth";
+  const timelineText = timeline || 'your preferred timeline';
+  const businessText = businessType || 'your business';
+  const goalsText = goals || 'qualified leads and consistent revenue growth';
 
   return `Based on what you shared, here is a recommended direction for ${businessText}: ${planByTier[tier]} Expected timeline: ${timelineText}. Primary focus: ${goalsText}.`;
 }
 
 const BellaBot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    { role: 'assistant', text: INITIAL_MESSAGE }
-  ]);
+  const [messages, setMessages] = useState([{ role: 'assistant', text: INITIAL_MESSAGE }]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [showPlanner, setShowPlanner] = useState(false);
+  const [showScheduler, setShowScheduler] = useState(false);
   const [isSubmittingPlan, setIsSubmittingPlan] = useState(false);
   const [planner, setPlanner] = useState({
     name: '',
@@ -49,7 +106,7 @@ const BellaBot = () => {
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, isTyping]);
+  }, [messages, isTyping, showScheduler]);
 
   useEffect(() => {
     if (isOpen) {
@@ -62,10 +119,10 @@ const BellaBot = () => {
   };
 
   const handleQuickBook = () => {
+    setShowScheduler(true);
     addAssistantMessage(
-      `Great call. You can pick a time here and we'll take care of the rest: ${CALENDLY_URL}`
+      "Here's our live calendar — choose a time that works for you. You'll get a confirmation email with your meeting details."
     );
-    window.open(CALENDLY_URL, '_blank', 'noopener,noreferrer');
   };
 
   const handlePlannerChange = (e) => {
@@ -78,7 +135,7 @@ const BellaBot = () => {
     if (isSubmittingPlan) return;
 
     if (!planner.name.trim() || !planner.email.trim() || !planner.goals.trim()) {
-      addAssistantMessage("Please include your name, email, and goals so I can build your custom plan.");
+      addAssistantMessage('Please include your name, email, and goals so I can build your custom plan.');
       return;
     }
 
@@ -87,8 +144,9 @@ const BellaBot = () => {
     const summary = buildPlanSummary(planner);
     addAssistantMessage(summary);
     addAssistantMessage(
-      `Next step: book your strategy call so we can finalize your custom build plan with you live: ${CALENDLY_URL}`
+      'Next step: book your strategy call below so we can finalize your plan together live.'
     );
+    setShowScheduler(true);
 
     try {
       await fetch('/api/bella-intake', {
@@ -119,8 +177,6 @@ const BellaBot = () => {
     setMessages(updatedMessages);
     setIsTyping(true);
 
-    // Build the API history: only user/assistant turns (skip the initial greeting
-    // since it was never part of an API call)
     const apiHistory = updatedMessages
       .filter((m) => m.role === 'user' || m.role === 'assistant')
       .map((m) => ({ role: m.role, content: m.text }));
@@ -144,7 +200,8 @@ const BellaBot = () => {
         ...prev,
         {
           role: 'assistant',
-          text: "Sorry, I'm having trouble connecting right now. Please email info@digitalmarketrix.com and we'll get back to you!",
+          text:
+            "Sorry, I'm having trouble connecting right now. Please email info@digitalmarketrix.com or book directly at https://calendly.com/jrose4502/30min — we'll get back to you!",
         },
       ]);
     } finally {
@@ -163,13 +220,19 @@ const BellaBot = () => {
         {!isOpen && <span className="notification-dot"></span>}
       </button>
 
-      <div className="bella-bot-window" role="dialog" aria-label="Bella chat assistant">
+      <div
+        className={`bella-bot-window ${showScheduler ? 'bella-bot-window--tall' : ''}`}
+        role="dialog"
+        aria-label="Bella chat assistant"
+      >
         <div className="bella-bot-header">
           <div className="bot-info">
             <div className="bot-avatar">B</div>
             <div>
               <h4>Bella</h4>
-              <p><span className="online-status"></span> AI Assistant</p>
+              <p>
+                <span className="online-status"></span> AI Assistant
+              </p>
             </div>
           </div>
         </div>
@@ -187,6 +250,31 @@ const BellaBot = () => {
               Build My Custom Plan
             </button>
           </div>
+
+          {showScheduler && (
+            <div className="bella-calendly-section">
+              <div className="bella-calendly-toolbar">
+                <span className="bella-calendly-title">Schedule a call</span>
+                <button type="button" className="bella-calendly-hide" onClick={() => setShowScheduler(false)}>
+                  Hide
+                </button>
+              </div>
+              <iframe
+                title="Book a strategy call with Digital Marketrix"
+                src={`${CALENDLY_URL}?embed=true`}
+                className="bella-calendly-iframe"
+                loading="lazy"
+              />
+              <a
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bella-calendly-fullpage"
+              >
+                Open scheduler in full page
+              </a>
+            </div>
+          )}
 
           {showPlanner && (
             <form className="bella-plan-form" onSubmit={handlePlannerSubmit}>
@@ -245,20 +333,24 @@ const BellaBot = () => {
                 required
               />
               <button type="submit" disabled={isSubmittingPlan}>
-                {isSubmittingPlan ? "Building..." : "Generate Plan + Send"}
+                {isSubmittingPlan ? 'Building...' : 'Generate Plan + Send'}
               </button>
             </form>
           )}
 
           {messages.map((msg, index) => (
             <div key={index} className={`message ${msg.role === 'assistant' ? 'bot' : 'user'}`}>
-              <div className="message-content">{msg.text}</div>
+              <div className="message-content">
+                <MessageBody text={msg.text} />
+              </div>
             </div>
           ))}
           {isTyping && (
             <div className="message bot">
               <div className="message-content typing">
-                <span></span><span></span><span></span>
+                <span></span>
+                <span></span>
+                <span></span>
               </div>
             </div>
           )}

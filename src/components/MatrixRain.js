@@ -13,6 +13,7 @@ const MatrixRain = ({
   mobileFontSize = 12,
   desktopFontSize = 15,
   columnStep = 1,
+  rainSpeed = 1,
 }) => {
   const canvasRef = useRef(null);
   const reducedMotion =
@@ -65,11 +66,12 @@ const MatrixRain = ({
       ctx.font = `600 ${fontSize}px "Space Grotesk", sans-serif`;
       const baseStep = Math.max(1, Number(columnStep) || 1);
       const step = liteMode ? Math.max(2, baseStep) : baseStep;
+      const speed = Math.max(0.5, Number(rainSpeed) || 1);
       for (let i = 0; i < drops.length; i++) {
         if (step > 1 && i % step !== drawPhase) continue;
+        const charSeed = Math.floor(drops[i] + i * 7 + drawPhase);
         const charIndex =
-          ((drops[i] + i * 7 + drawPhase) % CHARS.length + CHARS.length) %
-          CHARS.length;
+          ((charSeed % CHARS.length) + CHARS.length) % CHARS.length;
         const text = CHARS[charIndex];
         const y = drops[i] * fontSize;
         ctx.fillStyle = (i + drawPhase) % 13 === 0
@@ -79,7 +81,7 @@ const MatrixRain = ({
         if (y > h && (drops[i] + i) % 9 === 0) {
           drops[i] = 0;
         }
-        drops[i] += 1;
+        drops[i] += speed;
       }
       if (step > 1) {
         drawPhase = (drawPhase + 1) % step;
@@ -129,6 +131,7 @@ const MatrixRain = ({
     staticMode,
     liteMode,
     columnStep,
+    rainSpeed,
     desktopFontSize,
     dprCap,
     frameMsOverride,

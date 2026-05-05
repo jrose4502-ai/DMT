@@ -7,21 +7,10 @@ const STRIPE_PAYMENT_URL = "https://buy.stripe.com/test_28EfZa59Jb2XbPEf5q4Rq00"
 const Pricing = () => {
   const packages = [
     {
-      title: 'Starter Package',
-      subtitle: 'Perfect for businesses just getting started',
-      price: '$500 - $1,000',
-      features: [
-        'Professional Website Design',
-        'Mobile Optimization',
-        'Basic SEO Setup',
-        'Contact Form Integration'
-      ],
-      highlight: false
-    },
-    {
       title: 'Growth Package',
       subtitle: 'For businesses ready to attract more customers',
       price: '$1,000 - $2,500',
+      stripeUrl: 'https://buy.stripe.com/28EfZa59Jb2XbPEf5q4Rq00',
       features: [
         'Everything in Starter',
         'Advanced SEO Optimization',
@@ -40,19 +29,6 @@ const Pricing = () => {
         'Conversion Optimization',
         'Ongoing Marketing Strategy',
         'Monthly Performance Tracking'
-      ],
-      highlight: false
-    },
-    {
-      title: 'Monthly Marketing Plans',
-      subtitle: 'If you want consistent growth without handling everything yourself',
-      price: '$500/month',
-      priceNote: '(custom based on needs)',
-      features: [
-        'SEO Management',
-        'Social Media Management',
-        'Paid Ads Management',
-        'Website Updates & Maintenance'
       ],
       highlight: false
     }
@@ -99,7 +75,7 @@ const Pricing = () => {
                   Book a Call for {pkg.title}
                 </a>
                 <a
-                  href={STRIPE_PAYMENT_URL}
+                  href={pkg.stripeUrl || STRIPE_PAYMENT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-secondary btn-block stripe-pay-btn"

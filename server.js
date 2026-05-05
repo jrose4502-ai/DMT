@@ -18,6 +18,7 @@ const express = require("express");
 const signupHandler = require("./api/signup");
 const contactHandler = require("./api/contact");
 const bellaIntakeHandler = require("./api/bella-intake");
+const chatHandler = require("./api/chat");
 
 const app = express();
 const PORT = Number(process.env.API_PORT) || 3001;
@@ -34,6 +35,7 @@ app.use(express.json({ limit: "100kb" }));
 app.post("/api/signup", (req, res) => signupHandler(req, res));
 app.post("/api/contact", (req, res) => contactHandler(req, res));
 app.post("/api/bella-intake", (req, res) => bellaIntakeHandler(req, res));
+app.post("/api/chat", (req, res) => chatHandler(req, res));
 
 app.get("/api/health", (_req, res) => {
   res.json({ ok: true, service: "digital-marketrix-api" });
@@ -45,6 +47,6 @@ app.use((_req, res) => {
 
 app.listen(PORT, () => {
   console.log(
-    `API: http://localhost:${PORT}  POST /api/signup  POST /api/contact  POST /api/bella-intake  GET /api/health`
+    `API: http://localhost:${PORT}  POST /api/signup  POST /api/contact  POST /api/bella-intake  POST /api/chat  GET /api/health`
   );
 });

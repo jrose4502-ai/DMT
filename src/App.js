@@ -20,7 +20,7 @@ function getPerformanceProfile() {
       reducedMotion: false,
       tier: "high",
       maxPlasmaFps: 0,
-      showPlasma: true,
+      showPlasma: false,
       showSplashCursor: true,
       showMatrixRain: true,
       matrixStaticMode: false,
@@ -29,6 +29,7 @@ function getPerformanceProfile() {
       matrixMobileFont: 12,
       matrixDesktopFont: 16,
       matrixColumnStep: 2,
+      matrixRainSpeed: 3.0,
     };
   }
 
@@ -61,6 +62,7 @@ function getPerformanceProfile() {
       matrixMobileFont: 10,
       matrixDesktopFont: 14,
       matrixColumnStep: 4,
+      matrixRainSpeed: 3.2,
     };
   }
 
@@ -70,7 +72,7 @@ function getPerformanceProfile() {
       reducedMotion,
       tier,
       maxPlasmaFps: tabletLike ? 0 : 24,
-      showPlasma: !tabletLike,
+      showPlasma: false,
       showSplashCursor: false,
       showMatrixRain: true,
       matrixStaticMode: false,
@@ -79,6 +81,7 @@ function getPerformanceProfile() {
       matrixMobileFont: 11,
       matrixDesktopFont: tabletLike ? 16 : 15,
       matrixColumnStep: tabletLike ? 4 : 3,
+      matrixRainSpeed: tabletLike ? 3.0 : 2.8,
     };
   }
 
@@ -86,7 +89,7 @@ function getPerformanceProfile() {
     reducedMotion,
     tier,
     maxPlasmaFps: 0,
-    showPlasma: true,
+    showPlasma: false,
     showSplashCursor: true,
     showMatrixRain: true,
     matrixStaticMode: false,
@@ -95,6 +98,7 @@ function getPerformanceProfile() {
     matrixMobileFont: 12,
     matrixDesktopFont: 16,
     matrixColumnStep: 2,
+    matrixRainSpeed: 3.0,
   };
 }
 
@@ -156,6 +160,7 @@ function App() {
         mobileFontSize={profile.matrixMobileFont}
         desktopFontSize={profile.matrixDesktopFont}
         columnStep={profile.matrixColumnStep}
+        rainSpeed={profile.matrixRainSpeed}
       />
       <DeferredSplashCursor
         disabled={!profile.showSplashCursor}
