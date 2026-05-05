@@ -12,7 +12,7 @@ const Pricing = () => {
       price: '$1,000 - $2,500',
       stripeUrl: 'https://buy.stripe.com/28E4gs0Ttc712f43mI4Rq01',
       features: [
-        'Everything in Starter',
+        'Conversion-focused website foundation',
         'Advanced SEO Optimization',
         'Social Media Setup / Optimization',
         'Lead Generation Strategy'
@@ -108,14 +108,6 @@ const Pricing = () => {
                   className="btn btn-primary"
                 >
                   Get Your Custom Plan
-                </a>
-                <a
-                  href={STRIPE_PAYMENT_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-secondary stripe-pay-btn"
-                >
-                  Pay with Stripe
                 </a>
               </div>
             </div>
