@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/Pricing.css';
 
 const CALENDLY_URL = "https://calendly.com/jrose4502/30min";
-const STRIPE_PAYMENT_URL = "https://buy.stripe.com/28E4gs0Ttc712f43mI4Rq01";
+const STRIPE_CHECKOUT_URL = "https://buy.stripe.com/14AfZadGffjd2f46yU4Rq02";
 
 const Pricing = () => {
   const packages = [
@@ -10,7 +10,7 @@ const Pricing = () => {
       title: 'Growth Package',
       subtitle: 'For businesses ready to attract more customers',
       price: '$1,000 - $2,500',
-      stripeUrl: 'https://buy.stripe.com/28E4gs0Ttc712f43mI4Rq01',
+      stripeUrl: STRIPE_CHECKOUT_URL,
       features: [
         'Conversion-focused website foundation',
         'Advanced SEO Optimization',
@@ -23,7 +23,7 @@ const Pricing = () => {
       title: 'Premium Package',
       subtitle: 'For businesses ready to scale and dominate online',
       price: '$2,500+',
-      stripeUrl: 'https://buy.stripe.com/14AfZadGffjd2f46yU4Rq02',
+      stripeUrl: STRIPE_CHECKOUT_URL,
       features: [
         'Everything in Growth',
         'Paid Ads Setup & Management',
@@ -76,7 +76,7 @@ const Pricing = () => {
                   Book a Call for {pkg.title}
                 </a>
                 <a
-                  href={pkg.stripeUrl || STRIPE_PAYMENT_URL}
+                  href={pkg.stripeUrl || STRIPE_CHECKOUT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-secondary btn-block stripe-pay-btn"
