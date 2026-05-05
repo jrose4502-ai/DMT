@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { CONTACT_PHONE_DISPLAY } from "../constants/contact";
 
 const WEB3FORMS_KEY = "02dc3cef-cc06-4d45-abbb-0b78fc4a6b5e";
 
@@ -126,7 +127,7 @@ export default function SignupForm() {
             onChange={(e) => { setPhone(e.target.value); setErrors(prev => ({ ...prev, phone: "" })); }}
             disabled={isLoading}
             className={`signup-input${errors.phone ? " signup-input-error" : ""}`}
-            placeholder="(559) 557-8224"
+            placeholder={CONTACT_PHONE_DISPLAY}
           />
           {errors.phone && <span className="signup-field-error">{errors.phone}</span>}
         </label>

@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/Contact.css';
+import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_HREF } from '../constants/contact';
 import SignupForm from './SignupForm';
 
 const CALENDLY_URL = "https://calendly.com/jrose4502/30min";
@@ -39,7 +40,7 @@ const Contact = () => {
               </div>
               <h3>Phone</h3>
               <p>
-                <a href="tel:+15595578224">(559) 557-8224</a>
+                <a href={CONTACT_PHONE_HREF}>{CONTACT_PHONE_DISPLAY}</a>
               </p>
             </div>
 

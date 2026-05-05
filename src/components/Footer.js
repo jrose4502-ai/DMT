@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/Footer.css';
+import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_HREF } from '../constants/contact';
 import footerBrandLogo from '../assets/images/DM logo bottom left rans.png';
 
 const Footer = () => {
@@ -85,7 +86,7 @@ const Footer = () => {
               </li>
               <li>
                 <i className="fas fa-phone"></i>{' '}
-                <a href="tel:+15595578224">(559) 557-8224</a>
+                <a href={CONTACT_PHONE_HREF}>{CONTACT_PHONE_DISPLAY}</a>
               </li>
               <li>
                 <i className="fas fa-envelope"></i> info@digitalmarketrix.com
