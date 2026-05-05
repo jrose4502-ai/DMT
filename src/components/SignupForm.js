@@ -126,7 +126,7 @@ export default function SignupForm() {
             onChange={(e) => { setPhone(e.target.value); setErrors(prev => ({ ...prev, phone: "" })); }}
             disabled={isLoading}
             className={`signup-input${errors.phone ? " signup-input-error" : ""}`}
-            placeholder="(818) 555-0100"
+            placeholder="(559) 557-8224"
           />
           {errors.phone && <span className="signup-field-error">{errors.phone}</span>}
         </label>

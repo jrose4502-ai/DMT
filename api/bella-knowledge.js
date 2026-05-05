@@ -27,6 +27,7 @@ Public pricing bands (from the website; packages vary by scope):
 
 Booking & contact:
 - Free strategy calls / consultations: ${process.env.BELLA_CALENDLY_URL || "https://calendly.com/jrose4502/30min"}
+- Phone: 1(559) 557-8224
 - General email: info@digitalmarketrix.com
 - Website: digitalmarketrix.com
 
