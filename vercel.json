@@ -34,6 +34,8 @@
     { "source": "/api/contact", "destination": "/api/contact" },
     { "source": "/api/signup", "destination": "/api/signup" },
     { "source": "/api/chat", "destination": "/api/chat" },
+    { "source": "/api/bella-notify", "destination": "/api/bella-notify" },
+    { "source": "/api/bella-schedule-request", "destination": "/api/bella-schedule-request" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

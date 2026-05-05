@@ -229,6 +229,13 @@
   filter: brightness(1.08);
 }
 
+.bella-aux-form .bella-aux-hint {
+  margin: 0 0 4px;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--luxury-body-muted, rgba(232, 228, 220, 0.72));
+}
+
 .bella-plan-form {
   display: grid;
   gap: 8px;

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../styles/BellaBot.css';
 
 const INITIAL_MESSAGE =
-  "Hi! I'm Bella, your Digital Marketrix assistant. Ask me about growing your business, or tap Book Strategy Call to schedule a free strategy session on the calendar.";
+  "Hi! I'm Bella, your Digital Marketrix assistant. Ask about our services and pricing, tap Book Strategy Call for instant scheduling, use Request a specific time if you want us to confirm a slot by email, or Email conversation to team to send this chat to Julian.";
 const CALENDLY_URL = 'https://calendly.com/jrose4502/30min';
 
 const URL_IN_TEXT = /https?:\/\/[^\s<>"{}|\\^`[\]]+/gi;
@@ -91,7 +91,19 @@ const BellaBot = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [showPlanner, setShowPlanner] = useState(false);
   const [showScheduler, setShowScheduler] = useState(false);
+  const [showTimeRequest, setShowTimeRequest] = useState(false);
+  const [showEmailTranscript, setShowEmailTranscript] = useState(false);
   const [isSubmittingPlan, setIsSubmittingPlan] = useState(false);
+  const [isSubmittingNotify, setIsSubmittingNotify] = useState(false);
+  const [isSubmittingSchedule, setIsSubmittingSchedule] = useState(false);
+  const [notifyMeta, setNotifyMeta] = useState({ name: '', email: '' });
+  const [timeRequest, setTimeRequest] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    preferredTime: '',
+    notes: '',
+  });
   const [planner, setPlanner] = useState({
     name: '',
     email: '',
@@ -106,7 +118,7 @@ const BellaBot = () => {
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, isTyping, showScheduler]);
+  }, [messages, isTyping, showScheduler, showTimeRequest, showEmailTranscript, showPlanner]);
 
   useEffect(() => {
     if (isOpen) {
@@ -128,6 +140,93 @@ const BellaBot = () => {
   const handlePlannerChange = (e) => {
     const { name, value } = e.target;
     setPlanner((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleNotifyMetaChange = (e) => {
+    const { name, value } = e.target;
+    setNotifyMeta((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleTimeRequestChange = (e) => {
+    const { name, value } = e.target;
+    setTimeRequest((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleEmailTranscriptSubmit = async (e) => {
+    e.preventDefault();
+    if (isSubmittingNotify) return;
+
+    setIsSubmittingNotify(true);
+    try {
+      const res = await fetch('/api/bella-notify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: messages.map((m) => ({ role: m.role, content: m.text })),
+          visitorName: notifyMeta.name.trim(),
+          visitorEmail: notifyMeta.email.trim(),
+          source: 'bella-bot',
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || 'Request failed');
+
+      addAssistantMessage(
+        "Done — I've emailed this conversation to the Digital Marketrix team. They'll reply when a human answer is needed."
+      );
+      setShowEmailTranscript(false);
+    } catch (_) {
+      addAssistantMessage(
+        'Could not send the email right now. Please write to info@digitalmarketrix.com with your question.'
+      );
+    } finally {
+      setIsSubmittingNotify(false);
+    }
+  };
+
+  const handleTimeRequestSubmit = async (e) => {
+    e.preventDefault();
+    if (isSubmittingSchedule) return;
+
+    const { name, email, phone, preferredTime, notes } = timeRequest;
+    if (!name.trim() || !email.trim() || !preferredTime.trim()) {
+      addAssistantMessage('Please add your name, email, and preferred time so we can route your request.');
+      return;
+    }
+
+    setIsSubmittingSchedule(true);
+    try {
+      const res = await fetch('/api/bella-schedule-request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          phone: phone.trim(),
+          preferredTime: preferredTime.trim(),
+          notes: notes.trim(),
+          source: 'bella-bot',
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || 'Request failed');
+
+      addAssistantMessage(
+        "Got it — I've sent your preferred time to the team. Check your email for a quick confirmation. For the fastest booking, you can also grab any open slot here: https://calendly.com/jrose4502/30min"
+      );
+      setShowTimeRequest(false);
+      setTimeRequest((prev) => ({
+        ...prev,
+        preferredTime: '',
+        notes: '',
+      }));
+    } catch (_) {
+      addAssistantMessage(
+        'Could not submit that request right now. Please email info@digitalmarketrix.com or use Book Strategy Call.'
+      );
+    } finally {
+      setIsSubmittingSchedule(false);
+    }
   };
 
   const handlePlannerSubmit = async (e) => {
@@ -221,7 +320,9 @@ const BellaBot = () => {
       </button>
 
       <div
-        className={`bella-bot-window ${showScheduler ? 'bella-bot-window--tall' : ''}`}
+        className={`bella-bot-window ${
+          showScheduler || showTimeRequest || showEmailTranscript || showPlanner ? 'bella-bot-window--tall' : ''
+        }`}
         role="dialog"
         aria-label="Bella chat assistant"
       >
@@ -245,9 +346,37 @@ const BellaBot = () => {
             <button
               type="button"
               className="bella-chip"
-              onClick={() => setShowPlanner((prev) => !prev)}
+              onClick={() => {
+                setShowTimeRequest(false);
+                setShowEmailTranscript(false);
+                setShowPlanner((prev) => !prev);
+              }}
             >
               Build My Custom Plan
+            </button>
+            <button
+              type="button"
+              className="bella-chip"
+              onClick={() => {
+                const next = !showTimeRequest;
+                setShowEmailTranscript(false);
+                setShowPlanner(false);
+                setShowTimeRequest(next);
+              }}
+            >
+              Request a specific time
+            </button>
+            <button
+              type="button"
+              className="bella-chip"
+              onClick={() => {
+                const next = !showEmailTranscript;
+                setShowTimeRequest(false);
+                setShowPlanner(false);
+                setShowEmailTranscript(next);
+              }}
+            >
+              Email conversation to team
             </button>
           </div>
 
@@ -334,6 +463,81 @@ const BellaBot = () => {
               />
               <button type="submit" disabled={isSubmittingPlan}>
                 {isSubmittingPlan ? 'Building...' : 'Generate Plan + Send'}
+              </button>
+            </form>
+          )}
+
+          {showTimeRequest && (
+            <form className="bella-plan-form bella-aux-form" onSubmit={handleTimeRequestSubmit}>
+              <p className="bella-aux-hint">
+                Tell us when you want to meet — we email the team and you get a confirmation message. For instant booking,
+                use Book Strategy Call.
+              </p>
+              <input
+                name="name"
+                type="text"
+                placeholder="Name *"
+                value={timeRequest.name}
+                onChange={handleTimeRequestChange}
+                required
+              />
+              <input
+                name="email"
+                type="email"
+                placeholder="Email *"
+                value={timeRequest.email}
+                onChange={handleTimeRequestChange}
+                required
+              />
+              <input
+                name="phone"
+                type="text"
+                placeholder="Phone (optional)"
+                value={timeRequest.phone}
+                onChange={handleTimeRequestChange}
+              />
+              <input
+                name="preferredTime"
+                type="text"
+                placeholder="Preferred time (e.g. Next Wednesday 11:00 AM PT) *"
+                value={timeRequest.preferredTime}
+                onChange={handleTimeRequestChange}
+                required
+              />
+              <textarea
+                name="notes"
+                rows="2"
+                placeholder="Anything else we should know (optional)"
+                value={timeRequest.notes}
+                onChange={handleTimeRequestChange}
+              />
+              <button type="submit" disabled={isSubmittingSchedule}>
+                {isSubmittingSchedule ? 'Sending…' : 'Send to team'}
+              </button>
+            </form>
+          )}
+
+          {showEmailTranscript && (
+            <form className="bella-plan-form bella-aux-form" onSubmit={handleEmailTranscriptSubmit}>
+              <p className="bella-aux-hint">
+                Emails this whole conversation to Digital Marketrix. Add your email so Julian can reply.
+              </p>
+              <input
+                name="name"
+                type="text"
+                placeholder="Your name (optional)"
+                value={notifyMeta.name}
+                onChange={handleNotifyMetaChange}
+              />
+              <input
+                name="email"
+                type="email"
+                placeholder="Your email (recommended)"
+                value={notifyMeta.email}
+                onChange={handleNotifyMetaChange}
+              />
+              <button type="submit" disabled={isSubmittingNotify}>
+                {isSubmittingNotify ? 'Sending…' : 'Email transcript to team'}
               </button>
             </form>
           )}
