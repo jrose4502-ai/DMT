@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../styles/BellaBot.css';
 
 const INITIAL_MESSAGE =
-  "Hi! I'm Bella, your Digital Marketrix assistant. Ask about our services and pricing, tap Book Strategy Call for instant scheduling, use Request a specific time if you want us to confirm a slot by email, or Email conversation to team to send this chat to Julian.";
+  "Hi! I'm Bella, your Digital Marketrix assistant. Ask about our services and pricing — use Book strategy call for instant scheduling, Build my custom plan for a tailored outline, Request a specific time to tell us a preferred slot by email, or Email conversation to team to send this chat to Julian.";
 const CALENDLY_URL = 'https://calendly.com/jrose4502/30min';
 
 const URL_IN_TEXT = /https?:\/\/[^\s<>"{}|\\^`[\]]+/gi;
@@ -222,7 +222,7 @@ const BellaBot = () => {
       }));
     } catch (_) {
       addAssistantMessage(
-        'Could not submit that request right now. Please email info@digitalmarketrix.com or use Book Strategy Call.'
+        'Could not submit that request right now. Please email info@digitalmarketrix.com or use Book strategy call.'
       );
     } finally {
       setIsSubmittingSchedule(false);
@@ -341,7 +341,7 @@ const BellaBot = () => {
         <div className="bella-bot-messages">
           <div className="bella-quick-actions" aria-label="Bella quick actions">
             <button type="button" className="bella-chip" onClick={handleQuickBook}>
-              Book Strategy Call
+              Book strategy call
             </button>
             <button
               type="button"
@@ -352,7 +352,7 @@ const BellaBot = () => {
                 setShowPlanner((prev) => !prev);
               }}
             >
-              Build My Custom Plan
+              Build my custom plan
             </button>
             <button
               type="button"
@@ -471,7 +471,7 @@ const BellaBot = () => {
             <form className="bella-plan-form bella-aux-form" onSubmit={handleTimeRequestSubmit}>
               <p className="bella-aux-hint">
                 Tell us when you want to meet — we email the team and you get a confirmation message. For instant booking,
-                use Book Strategy Call.
+                use Book strategy call.
               </p>
               <input
                 name="name"
